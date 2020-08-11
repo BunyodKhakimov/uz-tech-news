@@ -1,13 +1,13 @@
 <!-- Header -->
 <header id="header">
-	<h1><a href="#">Future Imperfect</a></h1>
+	<h1><a href="/">Future Imperfect</a></h1>
 	<nav class="links">
 		<ul>
-			<li><a href="parts.html">Parts</a></li>
-			<li><a href="post.html">One Post</a></li>
-			<li><a href="create_post.html">Create Post</a></li>
-			<li><a href="#">Tempus</a></li>
-			<li><a href="#">Adipiscing</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="/parts">Parts</a></li>
+			<li><a href="/post">One Post</a></li>
+			<li><a href="/create">Create Post</a></li>
+			<li><a href="/about">About</a></li>
 		</ul>
 	</nav>
 	<nav class="main">

@@ -12,10 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/create', 'PostController@create');
 
-Route::get('/', function () {
-    return view('pages.create_post');
-});
+Route::get('/about', 'PageController@about');
+
+Route::get('/parts', 'PageController@parts');
+
+Route::get('/post', 'PageController@post');
+
+Route::get('/', 'PageController@index');
 
 Auth::routes();
 

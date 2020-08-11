@@ -14,7 +14,7 @@
 	</header>
 	<section>
 		<h3>Form</h3>
-		<form method="post" action="#">
+		<form method="post" action="{{ route('posts.store') }}">
 			<div class="row uniform">
 				<div class="6u 12u$(xsmall)">
 					<input type="text" name="demo-name" id="demo-name" value="" placeholder="Title" />
