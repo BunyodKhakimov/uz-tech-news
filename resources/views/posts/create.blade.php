@@ -15,30 +15,31 @@
 	<section>
 		<h3>Form</h3>
 		<form method="post" action="{{ route('posts.store') }}">
+			@csrf
 			<div class="row uniform">
 				<div class="6u 12u$(xsmall)">
-					<input type="text" name="demo-name" id="demo-name" value="" placeholder="Title" />
+					<input type="text" name="title" id="title" value="" placeholder="Title" />
 				</div>
 				<div class="6u$ 12u$(xsmall)">
-					<input type="email" name="demo-email" id="demo-email" value="" placeholder="Subtitle" />
+					<input type="text" name="subtitle" id="subtitle" value="" placeholder="Subtitle" />
 				</div>
 				<div class="12u$">
 					<div class="select-wrapper">
-						<select name="demo-category" id="demo-category">
+						<select name="category" id="category">
 							<option value="">- Category -</option>
-							<option value="1">Manufacturing</option>
-							<option value="1">Shipping</option>
-							<option value="1">Administration</option>
-							<option value="1">Human Resources</option>
+							<option value="manufacturing">Manufacturing</option>
+							<option value="shipping">Shipping</option>
+							<option value="administration">Administration</option>
+							<option value="economy">Economy</option>
 						</select>
 					</div>
 				</div>
 				<div class="12u$">
-					<textarea name="demo-message" id="demo-message" placeholder="Enter article body here" rows="6"></textarea>
+					<textarea name="body" id="body" placeholder="Enter article body here" rows="6"></textarea>
 				</div>
 				<div class="6u 12u$(small)">
-					<input type="checkbox" id="demo-copy" name="demo-copy">
-					<label for="demo-copy">Hidden</label>
+					<input type="checkbox" id="hidden" name="hidden" value="1">
+					<label for="hidden">Hidden</label>
 				</div>
 				<div class="12u$">
 					<ul class="actions">
