@@ -1,4 +1,10 @@
 @extends('layouts.main')
+
+@section('stylesheets')
+<link rel="stylesheet" href="{{asset('css/style.css')}}" />
+@endsection
+
+
 @section('content')
 <!-- Post -->
 <article class="post">
@@ -9,7 +15,7 @@
 		</div>
 		<div class="meta">
 			<time class="published" datetime="2015-10-18">October 18, 2015</time>
-			<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
 		</div>
 	</header>
 	<section>
@@ -18,14 +24,14 @@
 			@csrf
 			<div class="row uniform">
 				<div class="6u 12u$(xsmall)">
-					<input type="text" name="title" id="title" value="" placeholder="Title" />
+					<input type="text" name="title" id="title" value="" placeholder="Title" required maxlength="100" />
 				</div>
 				<div class="6u$ 12u$(xsmall)">
-					<input type="text" name="subtitle" id="subtitle" value="" placeholder="Subtitle" />
+					<input type="text" name="subtitle" id="subtitle" value="" placeholder="Subtitle" required maxlength="100" />
 				</div>
 				<div class="12u$">
 					<div class="select-wrapper">
-						<select name="category" id="category">
+						<select name="category" id="category" required>
 							<option value="">- Category -</option>
 							<option value="manufacturing">Manufacturing</option>
 							<option value="shipping">Shipping</option>
@@ -35,7 +41,7 @@
 					</div>
 				</div>
 				<div class="12u$">
-					<textarea name="body" id="body" placeholder="Enter article body here" rows="6"></textarea>
+					<textarea name="body" id="body" placeholder="Enter article body here" rows="6" required></textarea>
 				</div>
 				<div class="6u 12u$(small)">
 					<input type="checkbox" id="hidden" name="hidden" value="1">
