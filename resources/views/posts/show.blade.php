@@ -4,24 +4,31 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">Post Title</a></h2>
-			<p>Post subtitle should be here.</p>
+			<h2><a href="#">{{ $post->title }}</a></h2>
+			<p>{{ $post->subtitle }}</p>
 		</div>
 		<div class="meta">
-			<time class="published" datetime="2015-10-18">October 18, 2015</time>
+			<time class="published" datetime="2015-10-18">
+			{{ date('F j, Y', strtotime($post->created_at))}}
+			</time>
 			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
 		</div>
 	</header>
 	<section>
-		<p><span class="image left"><img src="images/pic07.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-		<p><span class="image right"><img src="images/pic04.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+		<p><span class="image left"><img src="{{ asset('images/pic07.jpg') }}" alt="" /></span>{{ $post->body }}</p>
 	</section>
 	<footer>
-		<ul class="stats">
-			<li><a href="#">General</a></li>
-			<li><a href="#" class="icon fa-heart">28</a></li>
-			<li><a href="#" class="icon fa-comment">128</a></li>
-		</ul>
+		<form action="{{ route('posts.destroy', $post->id) }}" method="post" id="delete_form">
+			@csrf
+			@method('DELETE')
+			<ul class="stats">
+				<li><a href="#">{{ $post->category }}</a></li>
+				<li><a href="#" class="icon fa-heart">28</a></li>
+				<li><a href="#" class="icon fa-comment">128</a></li>
+				<li><a href="{{ route('posts.edit', $post->id) }}" class="icon fa-edit">Edit</a></li>
+				<li><a href="javascript:{}" onclick="document.getElementById('delete_form').submit();" class="icon fa-trash">Delete</a></li>
+			</ul>
+		</form>
 	</footer>
 </article>
 @endsection

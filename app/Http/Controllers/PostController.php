@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::all();
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -72,7 +73,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show');
+        $post = Post::find($id);
+        return view('posts.show')->withPost($post);
     }
 
     /**
@@ -83,7 +85,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->withPost($post);
     }
 
     /**
@@ -95,7 +98,28 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array(
+            'title' => 'required|max:100',
+            'subtitle' => 'required|max:100',
+            'category' => 'required|max:50',
+            'title' => 'required|max:100',
+            'body' => 'required',
+            'hidden' => 'boolean'
+        ));
+
+        $post = Post::find($id);
+
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->category = $request->category;
+        $post->body = $request->body;
+        $post->hidden = $request->hidden;
+
+        $post->update();
+
+        Session::flash('success', 'Post is successfully updated!');
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -106,6 +130,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        Session::flash('success', 'Post is successfully deleted!');
+
+        return redirect()->route('posts.index');
     }
 }

@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('subtitle', 100);
             $table->string('category', 50);
             $table->text('body');
-            $table->boolean('hidden');
+            $table->boolean('hidden')->nullable();
         });
     }
 

@@ -5,8 +5,7 @@
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/parts">Parts</a></li>
-			<li><a href="/post">One Post</a></li>
-			<li><a href="{{ route('posts.create') }}">Create Post</a></li>
+			<li><a href="/post">Posts</a></li>
 			<li><a href="/about">About</a></li>
 		</ul>
 	</nav>
