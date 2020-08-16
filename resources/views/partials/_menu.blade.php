@@ -10,26 +10,26 @@
 	<section>
 		<ul class="links">
 			<li>
-				<a href="#">
-					<h3>Lorem ipsum</h3>
+				<a href="/">
+					<h3>Home</h3>
 					<p>Feugiat tempus veroeros dolor</p>
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<h3>Dolor sit amet</h3>
+				<a href="/parts">
+					<h3>Parts</h3>
 					<p>Sed vitae justo condimentum</p>
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<h3>Feugiat veroeros</h3>
+				<a href="/post">
+					<h3>Posts</h3>
 					<p>Phasellus sed ultricies mi congue</p>
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<h3>Etiam sed consequat</h3>
+				<a href="/about">
+					<h3>About</h3>
 					<p>Porta lectus amet ultricies</p>
 				</a>
 			</li>
@@ -38,7 +38,8 @@
 	<!-- Actions -->
 	<section>
 		<ul class="actions vertical">
-			<li><a href="#" class="button big fit">Log In</a></li>
+			<li><a href="/login" class="button big fit">Log In</a></li>
+			<li><a href="/register" class="button big fit">Register</a></li>
 		</ul>
 	</section>
 </section>
