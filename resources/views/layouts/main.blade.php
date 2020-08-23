@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Future Imperfect</title>
+		<title>UzTech | @yield('title')</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />@yield('stylesheets')
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		@yield('stylesheets')
 		{{-- <script src="{{ asset('js/ie/html5shiv.js') }}"></script> --}}
 		{{-- <link rel="stylesheet" href="{{asset('css/app.css')}}" /> --}}
 		{{-- <link rel="stylesheet" href="{{ asset('css/css/ie9.css') }}" /> --}}

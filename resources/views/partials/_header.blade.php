@@ -1,6 +1,6 @@
 <!-- Header -->
 <header id="header">
-	<h1><a href="/">Future Imperfect</a></h1>
+	<h1><a href="/">Uz Tech News</a></h1>
 	<nav class="links">
 		<ul>
 			<li><a href="/">Home</a></li>

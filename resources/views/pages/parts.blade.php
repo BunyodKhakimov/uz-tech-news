@@ -1,4 +1,9 @@
 @extends('layouts.main')
+
+@section('title')
+Parts
+@endsection
+
 @section('content')
 <!-- Post -->
 <article class="post">

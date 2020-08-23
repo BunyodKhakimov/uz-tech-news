@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+Posts
+@endsection
+
 @section('stylesheets')
 <link rel="stylesheet" href="{{asset('css/app.css')}}" />
 @endsection

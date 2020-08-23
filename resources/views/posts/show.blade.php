@@ -1,4 +1,9 @@
 @extends('layouts.main')
+
+@section('title')
+Post #{{ $post->id }}
+@endsection
+
 @section('content')
 <!-- Post -->
 <article class="post">

@@ -4,8 +4,8 @@
 	<section id="intro">
 		<a href="#" class="logo"><img src="{{asset('images/logo.jpg')}}" alt="" /></a>
 		<header>
-			<h2>Future Imperfect</h2>
-			<p>Another fine responsive site template in HTML5</a></p>
+			<h2>Uz Tech News</h2>
+			<p>Another fine responsive fornews on UZB</a></p>
 		</header>
 	</section>
 	<!-- Mini Posts -->
@@ -104,7 +104,7 @@
 		<h2>About</h2>
 		<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
 		<ul class="actions">
-			<li><a href="#" class="button">Learn More</a></li>
+			<li><a href="/about" class="button">Learn More</a></li>
 		</ul>
 	</section>
 	<!-- Footer -->

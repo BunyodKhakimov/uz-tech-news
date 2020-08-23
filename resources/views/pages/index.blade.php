@@ -1,4 +1,9 @@
 @extends('layouts.main')
+
+@section('title')
+Home
+@endsection
+
 @section('content')
 <!-- Posts -->
 @foreach($posts as $post)
@@ -16,7 +21,7 @@
 		</div>
 	</header>
 	<a href="{{ route('posts.show', $post->id) }}" class="image featured">
-		<img src="{{ asset('images/pic01.jpg') }}" alt="" />
+		<img src="{{ asset('images/pic02.jpg') }}" alt="" />
 	</a>
 	<p>
 		{{ substr($post->body, 0, 350) }}
