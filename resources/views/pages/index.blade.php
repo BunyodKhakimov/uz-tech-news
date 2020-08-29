@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
-@section('title')
-Home
-@endsection
+@section('title', 'Home')
 
 @section('content')
 <!-- Posts -->
@@ -17,11 +15,11 @@ Home
 			<time class="published" datetime="2015-10-18">
 			{{ date('F j, Y', strtotime($post->created_at))}}
 			</time>
-			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
+			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 		</div>
 	</header>
 	<a href="{{ route('posts.show', $post->id) }}" class="image featured">
-		<img src="{{ asset('images/pic02.jpg') }}" alt="" />
+		<img src="{{ asset('images/pic14.jpg') }}" alt="" />
 	</a>
 	<p>
 		{{ substr($post->body, 0, 350) }}
@@ -29,7 +27,7 @@ Home
 	</p>
 	<footer>
 		<ul class="actions">
-			<li><a href="{{ route('posts.show', $post->id) }}" class="button big">Continue Reading</a></li>
+			<li><a href="{{ route('getSinglePost', $post->id) }}" class="button big">Continue Reading</a></li>
 		</ul>
 		<ul class="stats">
 			<li><a href="#">{{ $post->category }}</a></li>

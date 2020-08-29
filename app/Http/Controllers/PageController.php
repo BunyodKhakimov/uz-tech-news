@@ -16,6 +16,11 @@ class PageController extends Controller
     	return view('pages.parts');
     }
 
+    public function getSinglePost($id){
+        $post = Post::find($id);
+        return view('posts.show')->withPost($post);
+    }
+
     public function about(){
     	return view('pages.about');
     }

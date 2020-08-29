@@ -5,7 +5,9 @@
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/parts">Parts</a></li>
-			<li><a href="/post">Posts</a></li>
+			@if(Auth::check())
+				<li><a href="/posts">Posts</a></li>
+			@endif
 			<li><a href="/about">About</a></li>
 		</ul>
 	</nav>

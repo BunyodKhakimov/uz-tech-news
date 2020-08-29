@@ -2,10 +2,10 @@
 <section id="sidebar">
 	<!-- Intro -->
 	<section id="intro">
-		<a href="#" class="logo"><img src="{{asset('images/logo.jpg')}}" alt="" /></a>
+		<a href="#" class="logo"><img src="{{asset('images/logo3.jpg')}}" alt="" /></a>
 		<header>
-			<h2>Uz Tech News</h2>
-			<p>Another fine responsive fornews on UZB</a></p>
+			<h2>UzTech.uz</h2>
+			<p>Bringing news closer to the people</a></p>
 		</header>
 	</section>
 	<!-- Mini Posts -->
@@ -16,36 +16,36 @@
 				<header>
 					<h3><a href="#">Vitae sed condimentum</a></h3>
 					<time class="published" datetime="2015-10-20">October 20, 2015</time>
-					<a href="#" class="author"><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
+					<a href="#" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 				</header>
-				<a href="#" class="image"><img src="{{ asset('images/pic04.jpg') }}" alt="" /></a>
+				<a href="#" class="image"><img src="{{ asset('images/pic13.jpg') }}" alt="" /></a>
 			</article>
 			<!-- Mini Post -->
 			<article class="mini-post">
 				<header>
 					<h3><a href="#">Rutrum neque accumsan</a></h3>
 					<time class="published" datetime="2015-10-19">October 19, 2015</time>
-					<a href="#" class="author"><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
+					<a href="#" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 				</header>
-				<a href="#" class="image"><img src="{{ asset('images/pic05.jpg') }}" alt="" /></a>
+				<a href="#" class="image"><img src="{{ asset('images/pic14.jpg') }}" alt="" /></a>
 			</article>
 			<!-- Mini Post -->
 			<article class="mini-post">
 				<header>
 					<h3><a href="#">Odio congue mattis</a></h3>
 					<time class="published" datetime="2015-10-18">October 18, 2015</time>
-					<a href="#" class="author"><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
+					<a href="#" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 				</header>
-				<a href="#" class="image"><img src="{{ asset('images/pic06.jpg') }}" alt="" /></a>
+				<a href="#" class="image"><img src="{{ asset('images/pic15.jpg') }}" alt="" /></a>
 			</article>
 			<!-- Mini Post -->
 			<article class="mini-post">
 				<header>
 					<h3><a href="#">Enim nisl veroeros</a></h3>
 					<time class="published" datetime="2015-10-17">October 17, 2015</time>
-					<a href="#" class="author"><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
+					<a href="#" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 				</header>
-				<a href="#" class="image"><img src="{{ asset('images/pic07.jpg') }}" alt="" /></a>
+				<a href="#" class="image"><img src="{{ asset('images/pic16.jpg') }}" alt="" /></a>
 			</article>
 		</div>
 	</section>
@@ -58,7 +58,7 @@
 						<h3><a href="#">Lorem ipsum fermentum ut nisl vitae</a></h3>
 						<time class="published" datetime="2015-10-20">October 20, 2015</time>
 					</header>
-					<a href="#" class="image"><img src="{{ asset('images/pic08.jpg') }}" alt="" /></a>
+					<a href="#" class="image img-container"><img src="{{ asset('images/pic17.jpg') }}" alt="" /></a>
 				</article>
 			</li>
 			<li>
@@ -67,7 +67,7 @@
 						<h3><a href="#">Convallis maximus nisl mattis nunc id lorem</a></h3>
 						<time class="published" datetime="2015-10-15">October 15, 2015</time>
 					</header>
-					<a href="#" class="image"><img src="{{ asset('images/pic09.jpg') }}" alt="" /></a>
+					<a href="#" class="image img-container"><img src="{{ asset('images/pic18.jpg') }}" alt="" /></a>
 				</article>
 			</li>
 			<li>
@@ -76,7 +76,7 @@
 						<h3><a href="#">Euismod amet placerat vivamus porttitor</a></h3>
 						<time class="published" datetime="2015-10-10">October 10, 2015</time>
 					</header>
-					<a href="#" class="image"><img src="{{ asset('images/pic10.jpg') }}" alt="" /></a>
+					<a href="#" class="image img-container"><img src="{{ asset('images/pic19.jpg') }}" alt="" /></a>
 				</article>
 			</li>
 			<li>
@@ -85,7 +85,7 @@
 						<h3><a href="#">Magna enim accumsan tortor cursus ultricies</a></h3>
 						<time class="published" datetime="2015-10-08">October 8, 2015</time>
 					</header>
-					<a href="#" class="image"><img src="{{ asset('images/pic11.jpg') }}" alt="" /></a>
+					<a href="#" class="image img-container"><img src="{{ asset('images/pic20.jpg') }}" alt="" /></a>
 				</article>
 			</li>
 			<li>
@@ -94,7 +94,7 @@
 						<h3><a href="#">Congue ullam corper lorem ipsum dolor</a></h3>
 						<time class="published" datetime="2015-10-06">October 7, 2015</time>
 					</header>
-					<a href="#" class="image"><img src="{{ asset('images/pic12.jpg') }}" alt="" /></a>
+					<a href="#" class="image"><img src="{{ asset('images/pic21.jpg') }}" alt="" /></a>
 				</article>
 			</li>
 		</ul>

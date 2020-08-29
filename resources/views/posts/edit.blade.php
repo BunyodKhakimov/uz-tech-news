@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
-@section('title')
-Edit Post
-@endsection
+@section('title', 'Edit Post')
 
 @section('stylesheets')
 <link rel="stylesheet" href="{{asset('css/style.css')}}" />
@@ -21,7 +19,7 @@ Edit Post
 			<time class="published" datetime="2015-10-18">
 				{{ date('F j, Y', strtotime($post->created_at))}}
 			</time>
-			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
+			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 		</div>
 	</header>
 	<section>

@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
-@section('title')
-Create Post
-@endsection
+@section('title', 'Create Post')
 
 @section('stylesheets')
 <link rel="stylesheet" href="{{asset('css/style.css')}}" />
@@ -19,7 +17,7 @@ Create Post
 		</div>
 		<div class="meta">
 			<time class="published" datetime="2015-10-18">October 18, 2015</time>
-			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/avatar.jpg') }}" alt="" /></a>
+			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 		</div>
 	</header>
 	<section>

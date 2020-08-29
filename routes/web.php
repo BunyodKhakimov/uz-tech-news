@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware'=>['web']], function(){
+	
+	Route::get('/post/{id}', 'PageController@getSinglePost')->name('getSinglePost');
 
 	Route::get('/about', 'PageController@about');
 
@@ -22,9 +24,9 @@ Route::group(['middleware'=>['web']], function(){
 
 	Auth::routes();
 
-	Route::get('/home', 'HomeController@index')->name('home');
+	// Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::get('/post', 'PostController@index')->middleware('auth');
+	Route::get('/posts', 'PostController@index')->middleware('auth');
 	
 	Route::resource('posts', 'PostController')->middleware('auth');
 });
