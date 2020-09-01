@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="{{asset('css/style.css')}}" />
 @endsection
 
+@section('miniposts')
+	@include('partials._miniposts')
+@endsection
 
 @section('content')
 <!-- Post -->
@@ -44,10 +47,6 @@
 				</div>
 				<div class="12u$">
 					<textarea name="body" id="body" placeholder="Enter article body here" rows="6" required></textarea>
-				</div>
-				<div class="6u 12u$(small)">
-					<input type="checkbox" id="hidden" name="hidden" value="1">
-					<label for="hidden">Hidden</label>
 				</div>
 				<div class="12u$">
 					<ul class="actions">

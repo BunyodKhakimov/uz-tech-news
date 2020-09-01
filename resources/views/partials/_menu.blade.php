@@ -42,7 +42,7 @@
 		<ul class="actions vertical">
 			@if(Auth::check())
 				<li>
-					<a href="{{ route('logout') }}"
+					<a href="javascript:{}"
 		            	onclick="event.preventDefault();
 		            	document.getElementById('logout-form').submit();"
 		            	class="button big fit">Logout

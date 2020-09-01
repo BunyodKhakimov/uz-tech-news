@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 	protected $fillable = [
-		'title', 'subtitle', 'category', 'body', 'hidden'
+		'user_id', 'title', 'subtitle', 'category', 'body', 'likes', 'views', 'hidden', 'author'
 	];
 
 	public function user()
 	{
 		return $this->belongsTo('App\User');
 	}
+
+	public function tag()
+    {
+        return $this->hasMany('App\Tag');
+    }
 }

@@ -18,9 +18,14 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->string('title', 100);
             $table->string('subtitle', 100);
-            $table->string('category', 50);
             $table->text('body');
-            $table->boolean('hidden')->nullable();
+            $table->string('category', 50);
+            $table->integer('likes')->default('0');
+            $table->integer('views')->default('0');
+            $table->boolean('hidden')->default('1');
+            $table->string('author', 50);
+            
+            $table->integer('user_id');
         });
     }
 

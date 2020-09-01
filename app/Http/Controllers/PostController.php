@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
+use App\User;
 use Session;
 
 class PostController extends Controller
@@ -44,20 +46,21 @@ class PostController extends Controller
             'subtitle' => 'required|max:100',
             'category' => 'required|max:50',
             'title' => 'required|max:100',
-            'body' => 'required',
-            'hidden' => 'boolean'
+            'body' => 'required'
         ));
 
         // store in DB
 
+        $user = Auth::user();
         $post = new Post;
+        
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->category = $request->category;
         $post->body = $request->body;
-        $post->hidden = $request->hidden;
+        $post->author = $user->name;
 
-        $post->save();
+        $user->post()->save($post);
 
         Session::flash('success', 'Post is successfully saved!');
         
@@ -74,6 +77,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+
         return view('posts.show')->withPost($post);
     }
 
@@ -103,8 +107,7 @@ class PostController extends Controller
             'subtitle' => 'required|max:100',
             'category' => 'required|max:50',
             'title' => 'required|max:100',
-            'body' => 'required',
-            'hidden' => 'boolean'
+            'body' => 'required'
         ));
 
         $post = Post::find($id);
@@ -113,8 +116,6 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->category = $request->category;
         $post->body = $request->body;
-        $post->hidden = $request->hidden;
-
         $post->update();
 
         Session::flash('success', 'Post is successfully updated!');
@@ -135,6 +136,21 @@ class PostController extends Controller
         $post->delete();
 
         Session::flash('success', 'Post is successfully deleted!');
+
+        return redirect()->route('posts.index');
+    }
+
+    public function hiddenToggle($id)
+    {
+        $post = Post::find($id);
+
+        $post->hidden = !$post->hidden;
+
+        $strHidden = $post->hidden ? 'hidden' : 'visible';
+
+        $post->update();
+
+        Session::flash('success', 'Post is ' . $strHidden . ' now!');
 
         return redirect()->route('posts.index');
     }

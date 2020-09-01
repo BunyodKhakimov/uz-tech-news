@@ -23,7 +23,7 @@
 				@include('partials._message')
 				@yield('content')
 			</div>
-			@include('partials._sidebar')
+			@include('partials._sidebar_demo')
 		</div>
 		<!-- Scripts -->
 		<script src="{{ asset('js/jquery.min.js') }}"></script>

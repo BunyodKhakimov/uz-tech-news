@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.demo')
 
 @section('title', )
 Post #{{ $post->id }}
@@ -20,7 +20,7 @@ Post #{{ $post->id }}
 			<time class="published" datetime="2015-10-18">
 			{{ date('F j, Y', strtotime($post->created_at))}}
 			</time>
-			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
+			<a href="#" class="author"><span class="name">{{ $post->author }}</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 		</div>
 	</header>
 	<section>
@@ -32,8 +32,8 @@ Post #{{ $post->id }}
 			@method('DELETE')
 			<ul class="stats">
 				<li><a href="#">{{ $post->category }}</a></li>
-				<li><a href="#" class="icon fa-heart">28</a></li>
-				<li><a href="#" class="icon fa-comment">128</a></li>
+				<li><a href="#" class="icon fa-heart">{{ $post->likes }}</a></li>
+				<li><a href="#" class="icon fa-comment">{{ $post->views }}</a></li>
 				@if(Auth::check())
 					<li>
 						<a href="{{ route('posts.edit', $post->id) }}" class="icon fa-edit">Edit</a>

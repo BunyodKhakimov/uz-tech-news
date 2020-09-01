@@ -16,6 +16,8 @@ Route::group(['middleware'=>['web']], function(){
 	
 	Route::get('/post/{id}', 'PageController@getSinglePost')->name('getSinglePost');
 
+	Route::get('/post/hide/{id}', 'PostController@hiddenToggle')->name('hidePost')->middleware('auth');
+
 	Route::get('/about', 'PageController@about');
 
 	Route::get('/parts', 'PageController@parts');
@@ -26,7 +28,7 @@ Route::group(['middleware'=>['web']], function(){
 
 	// Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::get('/posts', 'PostController@index')->middleware('auth');
+	// Route::get('/posts', 'PostController@index')->middleware('auth');
 	
 	Route::resource('posts', 'PostController')->middleware('auth');
 });
