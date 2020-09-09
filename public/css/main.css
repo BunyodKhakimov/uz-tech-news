@@ -1826,6 +1826,9 @@
 			}
 
 /* Form */
+	#searchFormSection {
+		display: none;
+	}
 
 	form {
 		margin: 0 0 2em 0;
@@ -3136,6 +3139,10 @@
 
 				#header .main .search {
 					display: none;
+				}
+
+				#searchFormSection {
+					display: block;
 				}
 
 		}

@@ -12,7 +12,7 @@
 					<time class="published" datetime="2015-10-20">
 						{{ date('F j, Y', strtotime($post->created_at))}}
 					</time>
-					<a href="#" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
+					<a href="{{ route('author', $post->author) }}" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 				</header>
 				<a href="{{ route('posts.show', $post->id) }}" class="image"><img src="{{ asset('images/pic13.jpg') }}" alt="" /></a>
 			</article>
@@ -64,7 +64,9 @@
 			<time class="published" datetime="2015-10-18">
 			{{ date('F j, Y', strtotime($post->created_at))}}
 			</time>
-			<a href="#" class="author"><span class="name">{{ $post->author }}</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
+			<a href="{{ route('author', $post->author) }}" class="author">
+				<span class="name">{{ $post->author }}</span><img src="{{ asset('images/profile.png') }}" alt="" />
+			</a>
 		</div>
 	</header>
 	<a href="{{ route('posts.show', $post->id) }}" class="image featured">
@@ -76,12 +78,22 @@
 	</p>
 	<footer>
 		<ul class="actions">
-			<li><a href="{{ route('getSinglePost', $post->id) }}" class="button big">Continue Reading</a></li>
+			<li>
+				<a href="{{ route('getSinglePost', $post->id) }}" class="button big">
+					Continue Reading
+				</a>
+			</li>
 		</ul>
 		<ul class="stats">
-			<li><a href="#">{{ $post->category }}</a></li>
-			<li><a href="#" class="icon fa-heart">{{ $post->likes }}</a></li>
-			<li><a href="#" class="icon fa-comment">{{ $post->views }}</a></li>
+			<li>
+				<a href="{{ route('category', $post->category) }}">{{ $post->category }}</a>
+			</li>
+			<li>
+				<a href="{{ route('likePost', $post->id) }}" class="icon fa-heart">{{ $post->likes }}</a>
+			</li>
+			<li>
+				<a href="#" class="icon fa-comment">{{ $post->views }}</a>
+			</li>
 		</ul>
 	</footer>
 </article>

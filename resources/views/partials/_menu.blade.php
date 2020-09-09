@@ -1,7 +1,7 @@
 <!-- Menu -->
 <section id="menu">
 	<!-- Search -->
-	<section>
+	<section id="searchFormSection">
 		<form class="search" method="get" action="#">
 			<input type="text" name="query" placeholder="Search" />
 		</form>
@@ -16,10 +16,22 @@
 				</a>
 			</li>
 			<li>
-				<a href="/parts">
-					<h3>Parts</h3>
-					<p>Sed vitae justo condimentum</p>
+				<a>
+					<h3>Categories</h3>
+					<a href="{{ route('category', 'manufactoring') }}">
+				    <p>Manufactoring</p>
+					</a>
+					<a href="{{ route('category', 'shipping') }}">
+					    <p>Shipping</p>
+					</a>
+				    <a href="{{ route('category', 'administration') }}">
+				    	<p>Administration</p>
+				    </a>
+				    <a href="{{ route('category', 'economy') }}">
+				    	<p>Economy</p>
+				    </a>
 				</a>
+				
 			</li>
 			@if(Auth::check())
 				<li>

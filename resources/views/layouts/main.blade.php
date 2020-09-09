@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="shortcut icon" href="{{ asset('images/profile.png') }}" type="image/png">
-		@yield('stylesheets')
+		<link rel="stylesheet" href="{{asset('css/app.css')}}" />
 		{{-- <script src="{{ asset('js/ie/html5shiv.js') }}"></script> --}}
 		{{-- <link rel="stylesheet" href="{{asset('css/app.css')}}" /> --}}
 		{{-- <link rel="stylesheet" href="{{ asset('css/css/ie9.css') }}" /> --}}

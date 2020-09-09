@@ -1,13 +1,9 @@
-@extends('layouts.main')
+@extends('layouts.demo')
 
 @section('title', 'Create Post')
 
 @section('stylesheets')
 <link rel="stylesheet" href="{{asset('css/style.css')}}" />
-@endsection
-
-@section('miniposts')
-	@include('partials._miniposts')
 @endsection
 
 @section('content')
@@ -51,12 +47,14 @@
 				<div class="12u$">
 					<ul class="actions">
 						<li>
-							<a class="button icon fa-upload">
+							<a class="button icon fa-upload" onclick="document.getElementById('inputFile').click();">
 								Upload pictures
-								<input class="fileInput" type="file" name="file" multiple/>
 							</a>
+							<input class="fileInput" type="file" id="inputFile" name="file" multiple style="display: none"/>
 						</li>
-						<li><input type="submit" value="Submit"/></li>
+						<li>
+							<input type="submit" value="Submit"/>
+						</li>
 					</ul>
 				</div>
 			</div>

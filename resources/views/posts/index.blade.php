@@ -2,10 +2,6 @@
 
 @section('title', 'Posts')
 
-@section('stylesheets')
-<link rel="stylesheet" href="{{asset('css/app.css')}}" />
-@endsection
-
 @section('content')
 <!-- Post -->
 <article class="post">

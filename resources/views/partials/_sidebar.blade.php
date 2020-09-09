@@ -2,7 +2,7 @@
 <section id="sidebar">
 	<!-- Intro -->
 	<section id="intro">
-		<a href="#" class="logo"><img src="{{asset('images/logo3.jpg')}}" alt="" /></a>
+		<a href="/" class="logo"><img src="{{asset('images/logo3.jpg')}}" alt="" /></a>
 		<header>
 			<h2>UzTech.uz</h2>
 			<p>Bringing tech news closer</a></p>

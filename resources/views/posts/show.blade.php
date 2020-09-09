@@ -4,10 +4,6 @@
 Post #{{ $post->id }}
 @endsection
 
-@section('stylesheets')
-<link rel="stylesheet" href="{{asset('css/app.css')}}" />
-@endsection
-
 @section('content')
 <!-- Post -->
 <article class="post">
@@ -32,7 +28,7 @@ Post #{{ $post->id }}
 			@method('DELETE')
 			<ul class="stats">
 				<li><a href="#">{{ $post->category }}</a></li>
-				<li><a href="#" class="icon fa-heart">{{ $post->likes }}</a></li>
+				<li><a href="{{ route('likePost', $post->id) }}" class="icon fa-heart">{{ $post->likes }}</a></li>
 				<li><a href="#" class="icon fa-comment">{{ $post->views }}</a></li>
 				@if(Auth::check())
 					<li>

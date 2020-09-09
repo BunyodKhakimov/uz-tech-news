@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware'=>['web']], function(){
+
+	Route::get('/author/{author}', 'PageController@getByAuthor')->name('author');
+
+	Route::get('/category/{category}', 'PageController@getByCategory')->name('category');
+
+	Route::get('/post/like/{id}', 'PageController@incrementLikes')->name('likePost');
 	
 	Route::get('/post/{id}', 'PageController@getSinglePost')->name('getSinglePost');
 
