@@ -52,6 +52,11 @@ Route::group(['middleware'=>['web']], function(){
 		->middleware('auth');
 
 	// Resources
+	// Route::resource('comments', 'CategoryController', 
+	// 	['except' => ['index', 'show', 'create']])
+	// 	->middleware('auth');
+		Route::post('/comments/{post_id}', 'CommentController@store')
+		->name('comments.store');
 
 	Route::resource('categories', 'CategoryController', ['except' => ['create']])
 		->middleware('auth');

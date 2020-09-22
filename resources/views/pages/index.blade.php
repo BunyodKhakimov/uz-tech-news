@@ -97,14 +97,9 @@
 				<a href="{{ route('likePost', $post->id) }}" class="icon fa-heart">{{ $post->likes }}</a>
 			</li>
 			<li>
-				<a href="#" class="icon fa-comment">{{ $post->views }}</a>
+				<a class="icon fa-comment">{{ $post->comments->count() }}</a>
 			</li>
 		</ul>
-		{{-- <ul class="stats">
-			<li>
-				<a href="#">{{ $post->tags->name }}</a>
-			</li>
-		</ul> --}}
 	</footer>
 </article>
 @endforeach

@@ -7,7 +7,7 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">About Page</a></h2>
+			<h2>About Page</h2>
 			<p>Info about this project should be here.</p>
 		</div>
 		<div class="meta">

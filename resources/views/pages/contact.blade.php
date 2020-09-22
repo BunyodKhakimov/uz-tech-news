@@ -7,7 +7,7 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">Contact Page</a></h2>
+			<h2>Contact Page</h2>
 			<p>Page to contact us via message</p>
 		</div>
 		<div class="meta">
