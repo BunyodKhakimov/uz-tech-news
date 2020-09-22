@@ -11,12 +11,17 @@ Post #{{ $post->id }}
 		<div class="title">
 			<h2><a href="#">{{ $post->title }}</a></h2>
 			<p>{{ $post->subtitle }}</p>
+			@foreach($post->tags as $tag)
+				<span class="badge badge-secondary text-capitalize">
+					{{ $tag->name }}
+				</span>
+			@endforeach
 		</div>
 		<div class="meta">
 			<time class="published" datetime="2015-10-18">
 			{{ date('F j, Y', strtotime($post->created_at))}}
 			</time>
-			<a href="#" class="author"><span class="name">{{ $post->author }}</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
+			<a href="#" class="author"><span class="name">{{ $post->user->name }}</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 		</div>
 	</header>
 	<section>
@@ -27,7 +32,7 @@ Post #{{ $post->id }}
 			@csrf
 			@method('DELETE')
 			<ul class="stats">
-				<li><a href="#">{{ $post->category }}</a></li>
+				<li><a href="{{ route('category', $post->category->id) }}">{{ $post->category->name }}</a></li>
 				<li><a href="{{ route('likePost', $post->id) }}" class="icon fa-heart">{{ $post->likes }}</a></li>
 				<li><a href="#" class="icon fa-comment">{{ $post->views }}</a></li>
 				@if(Auth::check())
@@ -37,7 +42,7 @@ Post #{{ $post->id }}
 					<li>
 						<a href="javascript:{}" onclick="document.getElementById('delete_form').submit();" class="icon fa-trash">Delete</a>
 					</li>
-				@endif
+				@endif				
 			</ul>
 		</form>
 	</footer>

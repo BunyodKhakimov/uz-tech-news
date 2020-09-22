@@ -12,39 +12,56 @@
 			<li>
 				<a href="/">
 					<h3>Home</h3>
-					<p>Feugiat tempus veroeros dolor</p>
+					{{-- <p>Feugiat tempus veroeros dolor</p> --}}
 				</a>
 			</li>
-			<li>
-				<a>
-					<h3>Categories</h3>
-					<a href="{{ route('category', 'manufactoring') }}">
-				    <p>Manufactoring</p>
+
+			@if(isset($categories))
+				<li>
+					<a href="/categories">
+						<h3>Categories</h3>
+						@foreach($categories as $category)
+							<a href="{{ route('category', $category->id) }}">
+						    	<p>{{ $category->name }}</p>
+							</a>
+						@endforeach
 					</a>
-					<a href="{{ route('category', 'shipping') }}">
-					    <p>Shipping</p>
+				</li>
+			@endif
+
+			@if(isset($tags))
+				<li>
+					<a href="/tags">
+						<h3>Tags</h3>
+						@foreach($tags as $tag)
+							<a href="{{ route('tags.show', $tag->id) }}">
+						    	<p>{{ $tag->name }}</p>
+							</a>
+						@endforeach
 					</a>
-				    <a href="{{ route('category', 'administration') }}">
-				    	<p>Administration</p>
-				    </a>
-				    <a href="{{ route('category', 'economy') }}">
-				    	<p>Economy</p>
-				    </a>
-				</a>
-				
-			</li>
+				</li>
+			@endif
+			
 			@if(Auth::check())
 				<li>
 					<a href="/posts">
 						<h3>Posts</h3>
-						<p>Phasellus sed ultricies mi congue</p>
+						{{-- <p>Phasellus sed ultricies mi congue</p> --}}
 					</a>
 				</li>
 			@endif
+
 			<li>
 				<a href="/about">
 					<h3>About</h3>
-					<p>Porta lectus amet ultricies</p>
+					{{-- <p>Porta lectus amet ultricies</p> --}}
+				</a>
+			</li>
+
+			<li>
+				<a href="/contact">
+					<h3>Contact</h3>
+					{{-- <p>Porta lectus amet ultricies</p> --}}
 				</a>
 			</li>
 		</ul>

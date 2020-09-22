@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
+use App\Tag;
+use App\Category;
 use Session;
 
 class PostController extends Controller
@@ -18,7 +20,12 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('id', 'desc')->simplepaginate(10);
-        return view('posts.index')->withPosts($posts);
+
+        $categories = Category::all();
+
+        return view('posts.index')
+            ->withPosts($posts)
+            ->withCategories($categories);
     }
 
     /**
@@ -28,7 +35,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -39,12 +48,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         // validation 
-
         $this->validate($request, array(
             'title' => 'required|max:100',
             'subtitle' => 'required|max:100',
-            'category' => 'required|max:50',
+            'category_id' => 'required',
             'title' => 'required|max:100',
             'body' => 'required'
         ));
@@ -56,12 +65,15 @@ class PostController extends Controller
         
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
-        $post->category = $request->category;
+        $post->category_id = $request->category_id;
         $post->body = $request->body;
-        $post->author = $user->name;
 
         $user->post()->save($post);
 
+        if(isset($request->tags)){
+            $post->tags()->sync($request->tags, false);  
+        }
+        
         Session::flash('success', 'Post is successfully saved!');
         
         // redirect
@@ -78,7 +90,11 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        return view('posts.show')->withPost($post);
+        $categories = Category::all();
+
+        return view('posts.show')
+            ->withPost($post)
+            ->withCategories($categories);
     }
 
     /**
@@ -90,7 +106,15 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit')->withPost($post);
+
+        $categories = Category::all();
+
+        $tags = Tag::all();
+        
+        return view('posts.edit')
+            ->withPost($post)
+            ->withTags($tags)
+            ->withCategories($categories);
     }
 
     /**
@@ -105,7 +129,7 @@ class PostController extends Controller
         $this->validate($request, array(
             'title' => 'required|max:100',
             'subtitle' => 'required|max:100',
-            'category' => 'required|max:50',
+            'category_id' => 'required',
             'title' => 'required|max:100',
             'body' => 'required'
         ));
@@ -114,9 +138,13 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
-        $post->category = $request->category;
+        $post->category_id = $request->category_id;
         $post->body = $request->body;
         $post->update();
+
+        if(isset($request->tags)){
+            $post->tags()->sync($request->tags, false);  
+        }
 
         Session::flash('success', 'Post is successfully updated!');
 
@@ -132,6 +160,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        $post->tags()->detach();
 
         $post->delete();
 

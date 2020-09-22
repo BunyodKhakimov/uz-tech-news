@@ -19,12 +19,11 @@ class CreatePostsTable extends Migration
             $table->string('title', 100);
             $table->string('subtitle', 100);
             $table->text('body');
-            $table->string('category', 50);
             $table->integer('likes')->default('0');
             $table->integer('views')->default('0');
             $table->boolean('hidden')->default('1');
-            $table->string('author', 50);
             
+            $table->integer('category_id');
             $table->integer('user_id');
         });
     }

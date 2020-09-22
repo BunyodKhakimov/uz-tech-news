@@ -3,7 +3,8 @@
 @section('title', 'Create Post')
 
 @section('stylesheets')
-<link rel="stylesheet" href="{{asset('css/style.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/style.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/select2.css')}}" />
 @endsection
 
 @section('content')
@@ -32,17 +33,29 @@
 				</div>
 				<div class="12u$">
 					<div class="select-wrapper">
-						<select name="category" id="category" required>
+						<select name="category_id" id="category" required>
 							<option value="">- Category -</option>
-							<option value="manufacturing">Manufacturing</option>
-							<option value="shipping">Shipping</option>
-							<option value="administration">Administration</option>
-							<option value="economy">Economy</option>
+							@foreach($categories as $category)
+								<option value="{{ $category->id }}">
+									{{ $category->name }}
+								</option>
+							@endforeach
 						</select>
 					</div>
 				</div>
 				<div class="12u$">
-					<textarea name="body" id="body" placeholder="Enter article body here" rows="6" required></textarea>
+					<div class="select-wrapper">
+						<select class="js-example-basic-multiple" name="tags[]" multiple="multiple" id="tag">
+						  @foreach($tags as $tag)
+								<option value="{{ $tag->id }}">
+									{{ $tag->name }}
+								</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				<div class="12u$">
+					<textarea name="body" id="body" placeholder="Enter article body here..." rows="6" required></textarea>
 				</div>
 				<div class="12u$">
 					<ul class="actions">
@@ -61,4 +74,17 @@
 		</form>
 	</section>
 </article>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/select2.js') }}"></script>
+<script>
+	$(document).ready(function() {
+		$('.js-example-basic-multiple').select2(
+			{
+				placeholder: '   Select tags'
+			}
+		);
+	});
+</script>
 @endsection

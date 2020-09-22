@@ -5,15 +5,16 @@
 @section('content')
 <!-- Post -->
 <article class="post">
-	<div class="row">
-		<div class="col-6 col-sm-7 col-lg-8">
-			<h2 class="mt-2">All Posts</h2>
+	<header>
+		<div class="title">
+			<h2><a href="#">All Posts</a></h2>
+			<p>Here you can edit posts and create new one.</p>
 		</div>
-		<div class="col-6 col-sm-5  col-lg-4">
+		<div class="meta">
 			<a href="{{ route('posts.create') }}" class="button btn-block">Create Post</a>
 		</div>
-	</div>
-	<div class="table-wrapper mt-4">
+	</header>
+	<div class="table-wrapper">
 		<table>
 			<thead>
 				<tr>
@@ -32,12 +33,12 @@
 					<th>{{ $post->id }}</th>
 					<td>{{ $post->title }}</td>
 					<td>{{ $post->subtitle }}</td>
-					<td>{{ $post->category }}</td>
+					<td>{{ $post->category->name }}</td>
 					<td>
 						{{ substr($post->body, 0, 80) }}
 						{{ strlen($post->body)>80 ? "..." : "" }}
 					</td>
-					<td>{{ $post->author }}</td>
+					<td>{{ $post->user->name }}</td>
 					<td>
 						<div class="row">
 							<a href="{{ route('posts.show', $post->id) }}" class="btn icon fa-photo" title="Show"></a>

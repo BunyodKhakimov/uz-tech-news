@@ -12,7 +12,7 @@
 					<time class="published" datetime="2015-10-20">
 						{{ date('F j, Y', strtotime($post->created_at))}}
 					</time>
-					<a href="{{ route('author', $post->author) }}" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
+					<a href="{{ route('author', $post->user->name) }}" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 				</header>
 				<a href="{{ route('posts.show', $post->id) }}" class="image"><img src="{{ asset('images/pic13.jpg') }}" alt="" /></a>
 			</article>
@@ -59,13 +59,18 @@
 				</a>
 			</h2>
 			<p>{{ $post->subtitle }}</p>
+			@foreach($post->tags as $tag)
+				<span class="badge badge-secondary text-capitalize">
+					{{ $tag->name }}
+				</span>
+			@endforeach
 		</div>
 		<div class="meta">
 			<time class="published" datetime="2015-10-18">
 			{{ date('F j, Y', strtotime($post->created_at))}}
 			</time>
-			<a href="{{ route('author', $post->author) }}" class="author">
-				<span class="name">{{ $post->author }}</span><img src="{{ asset('images/profile.png') }}" alt="" />
+			<a href="{{ route('author', $post->user->name) }}" class="author">
+				<span class="name">{{ $post->user->name }}</span><img src="{{ asset('images/profile.png') }}" alt="" />
 			</a>
 		</div>
 	</header>
@@ -86,7 +91,7 @@
 		</ul>
 		<ul class="stats">
 			<li>
-				<a href="{{ route('category', $post->category) }}">{{ $post->category }}</a>
+				<a href="{{ route('category', $post->category->name) }}">{{ $post->category->name }}</a>
 			</li>
 			<li>
 				<a href="{{ route('likePost', $post->id) }}" class="icon fa-heart">{{ $post->likes }}</a>
@@ -95,6 +100,11 @@
 				<a href="#" class="icon fa-comment">{{ $post->views }}</a>
 			</li>
 		</ul>
+		{{-- <ul class="stats">
+			<li>
+				<a href="#">{{ $post->tags->name }}</a>
+			</li>
+		</ul> --}}
 	</footer>
 </article>
 @endforeach

@@ -3,7 +3,8 @@
 @section('title', 'Edit Post')
 
 @section('stylesheets')
-<link rel="stylesheet" href="{{asset('css/style.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/style.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/select2.css')}}" />
 @endsection
 
 @section('content')
@@ -35,17 +36,29 @@
 				</div>
 				<div class="12u$">
 					<div class="select-wrapper">
-						<select name="category" id="category" required>
+						<select name="category_id" id="category" required>
 							<option value="">- Category -</option>
-							<option value="manufacturing">Manufacturing</option>
-							<option value="shipping">Shipping</option>
-							<option value="administration">Administration</option>
-							<option value="economy">Economy</option>
+							@foreach($categories as $category)
+								<option value="{{ $category->id }}">
+									{{ $category->name }}
+								</option>
+							@endforeach
 						</select>
 					</div>
 				</div>
 				<div class="12u$">
-					<textarea name="body" id="body" placeholder="Enter article body here" rows="6" required>{{ $post->body }}</textarea>
+					<div class="select-wrapper">
+						<select class="js-example-basic-multiple" name="tags[]" multiple="multiple" id="tag">
+						  @foreach($tags as $tag)
+								<option value="{{ $tag->id }}">
+									{{ $tag->name }}
+								</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				<div class="12u$">
+					<textarea name="body" id="body" placeholder="Enter article body here..." rows="6" required>{{ $post->body }}</textarea>
 				</div>
 				<div class="6u 12u$(small)">
 					<input type="checkbox" id="hidden" name="hidden" value="1">
@@ -54,15 +67,10 @@
 				<div class="12u$">
 					<ul class="actions">
 						<li>
-							<a class="button icon fa-upload">
+							<a class="button icon fa-upload" onclick="document.getElementById('inputFile').click();">
 								Upload pictures
-								<input class="fileInput" type="file" name="file" multiple/>
 							</a>
-						</li>
-						<li>
-							<a class="button" href="{{ route('posts.show', $post->id) }}">
-								Cancel
-							</a>
+							<input class="fileInput" type="file" id="inputFile" name="file" multiple style="display: none"/>
 						</li>
 						<li><input type="submit" value="Save"/></li>
 					</ul>
@@ -71,4 +79,17 @@
 		</form>
 	</section>
 </article>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/select2.js') }}"></script>
+<script>
+	$(document).ready(function() {
+		$('.js-example-basic-multiple').select2(
+			{
+				placeholder: '   Select tags'
+			}
+		);
+	});
+</script>
 @endsection

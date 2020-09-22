@@ -11,7 +11,7 @@
 		{{-- <link rel="stylesheet" href="{{ asset('css/css/ie9.css') }}" /> --}}
 		{{-- <link rel="stylesheet" href="{{ asset('css/ie8.css') }}" /> --}}
 		<link rel="stylesheet" href="{{asset('css/main.css')}}" />
-		
+		@yield('stylesheets')
 	</head>
 	<body>
 		<!-- Wrapper -->

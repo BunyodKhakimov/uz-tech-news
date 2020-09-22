@@ -14,28 +14,54 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware'=>['web']], function(){
 
-	Route::get('/author/{author}', 'PageController@getByAuthor')->name('author');
+	// PageController
 
-	Route::get('/category/{category}', 'PageController@getByCategory')->name('category');
+	Route::get('/author/{author}', 'PageController@getByAuthor')
+		->name('author');
 
-	Route::get('/post/like/{id}', 'PageController@incrementLikes')->name('likePost');
+	Route::get('/category/{category_id}', 'PageController@getByCategory')
+		->name('category');
+
+	Route::get('/post/like/{id}', 'PageController@incrementLikes')
+		->name('likePost');
 	
-	Route::get('/post/{id}', 'PageController@getSinglePost')->name('getSinglePost');
+	Route::get('/post/{id}', 'PageController@getSinglePost')
+		->name('getSinglePost');
 
-	Route::get('/post/hide/{id}', 'PostController@hiddenToggle')->name('hidePost')->middleware('auth');
+	Route::get('/about', 'PageController@about')
+		->name('about');
 
-	Route::get('/about', 'PageController@about');
+	Route::get('/contact', 'PageController@contact')
+		->name('contact');
+
+	Route::post('/contact', 'PageController@postContact')
+		->name('postContact');
 
 	Route::get('/parts', 'PageController@parts');
 
-	Route::get('/', 'PageController@index');
+	Route::get('/', 'PageController@index')
+		->name('home');
+
+	// PostController & Resources
+
+	Route::get('/post/hide/{id}', 'PostController@hiddenToggle')
+		->name('hidePost')
+		->middleware('auth');
+
+	Route::resource('posts', 'PostController')
+		->middleware('auth');
+
+	// Resources
+
+	Route::resource('categories', 'CategoryController', ['except' => ['create']])
+		->middleware('auth');
+
+	Route::resource('tags', 'TagController', ['except' => ['create']])
+		->middleware('auth');
+
+	// Auth
 
 	Auth::routes();
-
-	// Route::get('/home', 'HomeController@index')->name('home');
-
-	// Route::get('/posts', 'PostController@index')->middleware('auth');
 	
-	Route::resource('posts', 'PostController')->middleware('auth');
 });
 
