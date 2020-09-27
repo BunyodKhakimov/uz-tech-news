@@ -78,8 +78,8 @@
 		<img src="{{ asset('images/pic14.jpg') }}" alt="" />
 	</a>
 	<p>
-		{{ substr($post->body, 0, 350) }}
-		{{ strlen($post->body)>350 ? "..." : "" }}
+		{{ substr(strip_tags($post->body), 0, 350) }}
+		{{ strlen(strip_tags($post->body))>350 ? "..." : "" }}
 	</p>
 	<footer>
 		<ul class="actions">

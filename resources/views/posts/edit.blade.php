@@ -5,6 +5,15 @@
 @section('stylesheets')
 	<link rel="stylesheet" href="{{asset('css/style.css')}}" />
 	<link rel="stylesheet" href="{{asset('css/select2.css')}}" />
+
+	{{-- WYSWYG TinyMCE --}}
+	<script src="https://cdn.tiny.cloud/1/ueed0lgrhz99vu93ro4dvrwy946jqnx6hdybhdr15wk8qodg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea',
+        menubar: false
+      });
+    </script>
 @endsection
 
 @section('content')
@@ -24,7 +33,7 @@
 	</header>
 	<section>
 		<h3>Form</h3>
-		<form method="post" action="{{ route('posts.update', $post->id) }}">
+		<form method="post" action="{{ route('posts.update', $post->id) }}" novalidate>
 			@csrf
 			@method('PUT')
 			<div class="row uniform">
@@ -58,7 +67,7 @@
 					</div>
 				</div>
 				<div class="12u$">
-					<textarea name="body" id="body" placeholder="Enter article body here..." rows="6" required>{{ $post->body }}</textarea>
+					<textarea name="body" id="mytextarea" placeholder="Enter article body here..." rows="8" required>{{ $post->body }}</textarea>
 				</div>
 				<div class="6u 12u$(small)">
 					<input type="checkbox" id="hidden" name="hidden" value="1">

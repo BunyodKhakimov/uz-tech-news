@@ -35,8 +35,8 @@
 					<td>{{ $post->subtitle }}</td>
 					<td>{{ $post->category->name }}</td>
 					<td>
-						{{ substr($post->body, 0, 80) }}
-						{{ strlen($post->body)>80 ? "..." : "" }}
+						{{ substr(strip_tags($post->body), 0, 80) }}
+						{{ strlen(strip_tags($post->body))>80 ? "..." : "" }}
 					</td>
 					<td>{{ $post->user->name }}</td>
 					<td>

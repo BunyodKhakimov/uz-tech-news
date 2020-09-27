@@ -10,6 +10,9 @@ use App\Tag;
 use App\Category;
 use Session;
 
+
+use HTMLPurifier;
+
 class PostController extends Controller
 {
     /**
@@ -48,8 +51,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // validation 
+
+        // validation
+        
         $this->validate($request, array(
             'title' => 'required|max:100',
             'subtitle' => 'required|max:100',
@@ -57,6 +61,11 @@ class PostController extends Controller
             'title' => 'required|max:100',
             'body' => 'required'
         ));
+
+        // clean up $request->body from scripts
+
+        $purifier = new HTMLPurifier();
+        $clean_body = $purifier->purify($request->body);
 
         // store in DB
 
@@ -68,12 +77,13 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->body = $request->body;
 
+        // Setting up relations 
         $user->post()->save($post);
 
         if(isset($request->tags)){
             $post->tags()->sync($request->tags, false);  
         }
-        
+
         Session::flash('success', 'Post is successfully saved!');
         
         // redirect

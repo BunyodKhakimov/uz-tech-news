@@ -30,9 +30,11 @@
 		</header>
 		<section>
 			<p>
-				<span class="image left">
+				{{-- <span class="image left">
 					<img src="{{ asset('images/pic13.jpg') }}" alt="" />
-				</span>{{ $post->body }}
+				</span> --}}
+				{!! $post->body !!}
+				{{-- <script>alert("Hello World");</script> --}}
 			</p>
 		</section>
 		<footer>

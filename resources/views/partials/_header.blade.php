@@ -5,7 +5,7 @@
 		<ul>
 			<li><a href="/">Home</a></li>
 
-			<li><a href="/parts">Parts</a></li>
+			{{-- <li><a href="/parts">Parts</a></li> --}}
 
 			@if(isset($categories))
 				<li>
