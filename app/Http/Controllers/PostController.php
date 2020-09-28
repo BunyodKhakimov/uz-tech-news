@@ -9,7 +9,7 @@ use App\User;
 use App\Tag;
 use App\Category;
 use Session;
-
+use Image;
 
 use HTMLPurifier;
 
@@ -51,7 +51,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
         // validation
         
         $this->validate($request, array(
@@ -67,26 +66,42 @@ class PostController extends Controller
         $purifier = new HTMLPurifier();
         $clean_body = $purifier->purify($request->body);
 
-        // store in DB
-
-        $user = Auth::user();
         $post = new Post;
+
+        // file uploaded
+
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/post_images/' . $filename);
+
+            Image::make($image)->save($location);
+
+            $post->image = $filename;
+        }
+
+        // store in DB
         
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->category_id = $request->category_id;
         $post->body = $request->body;
 
-        // Setting up relations 
+        // Setting up relations
+        
+        $user = Auth::user();
         $user->post()->save($post);
 
         if(isset($request->tags)){
             $post->tags()->sync($request->tags, false);  
         }
 
+        //notificaation
+
         Session::flash('success', 'Post is successfully saved!');
         
         // redirect
+
         return redirect()->route('posts.show', $post->id);
     }
 

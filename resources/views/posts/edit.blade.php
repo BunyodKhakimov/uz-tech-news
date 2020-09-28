@@ -33,7 +33,7 @@
 	</header>
 	<section>
 		<h3>Form</h3>
-		<form method="post" action="{{ route('posts.update', $post->id) }}" novalidate>
+		<form method="post" action="{{ route('posts.update', $post->id) }}"  enctype="multipart/form-data" novalidate>
 			@csrf
 			@method('PUT')
 			<div class="row uniform">

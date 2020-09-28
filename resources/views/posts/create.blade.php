@@ -31,7 +31,7 @@
 	</header>
 	<section>
 		<h3>Form</h3>
-		<form method="post" action="{{ route('posts.store') }}" novalidate>
+		<form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data" novalidate>
 			@csrf
 			<div class="row uniform">
 				<div class="6u 12u$(xsmall)">
@@ -72,7 +72,7 @@
 							<a class="button icon fa-upload" onclick="document.getElementById('inputFile').click();">
 								Upload pictures
 							</a>
-							<input class="fileInput" type="file" id="inputFile" name="file" multiple style="display: none"/>
+							<input class="fileInput" type="file" id="inputFile" name="image" multiple style="display: none"/>
 						</li>
 						<li>
 							<input type="submit" value="Submit"/>

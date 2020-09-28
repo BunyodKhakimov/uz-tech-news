@@ -74,13 +74,19 @@
 			</a>
 		</div>
 	</header>
+
 	<a href="{{ route('posts.show', $post->id) }}" class="image featured">
-		<img src="{{ asset('images/pic14.jpg') }}" alt="" />
+		<img 
+			@if($post->image == null) src="{{ asset('images/pic14.jpg') }}"
+			@else src="{{ asset('images/post_images/' . $post->image) }}"
+			@endif
+			alt="post_image" />
 	</a>
 	<p>
 		{{ substr(strip_tags($post->body), 0, 350) }}
 		{{ strlen(strip_tags($post->body))>350 ? "..." : "" }}
 	</p>
+
 	<footer>
 		<ul class="actions">
 			<li>
