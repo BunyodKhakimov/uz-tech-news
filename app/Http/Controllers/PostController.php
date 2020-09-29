@@ -10,6 +10,7 @@ use App\Tag;
 use App\Category;
 use Session;
 use Image;
+use File;
 
 use HTMLPurifier;
 
@@ -58,7 +59,8 @@ class PostController extends Controller
             'subtitle' => 'required|max:100',
             'category_id' => 'required',
             'title' => 'required|max:100',
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'sometimes|image'
         ));
 
         // clean up $request->body from scripts
@@ -75,7 +77,9 @@ class PostController extends Controller
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/post_images/' . $filename);
 
-            Image::make($image)->save($location);
+            Image::make($image)->save($location); 
+
+            // 840x341 post, 351x176 minipost, 51x51 postlist
 
             $post->image = $filename;
         }
@@ -93,7 +97,7 @@ class PostController extends Controller
         $user->post()->save($post);
 
         if(isset($request->tags)){
-            $post->tags()->sync($request->tags, false);  
+            $post->tags()->sync($request->tags, false); 
         }
 
         //notificaation
@@ -156,10 +160,32 @@ class PostController extends Controller
             'subtitle' => 'required|max:100',
             'category_id' => 'required',
             'title' => 'required|max:100',
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'sometimes|image'
         ));
 
         $post = Post::find($id);
+
+        if($request->hasFile('image')){
+            
+            // create a file
+
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/post_images/' . $filename);
+
+            Image::make($image)->save($location);
+
+            // delete old file
+
+            File::delete(public_path('images/post_images/'. $post->image));
+
+            // 840x341 post, 351x176 minipost, 51x51 postlist
+
+            // save in db
+
+            $post->image = $filename;
+        }
 
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
@@ -187,6 +213,8 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $post->tags()->detach();
+
+        File::delete(public_path('images/post_images' . $post->image));
 
         $post->delete();
 

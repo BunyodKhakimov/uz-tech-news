@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="{{asset('css/style.css')}}" />
 	<link rel="stylesheet" href="{{asset('css/select2.css')}}" />
 
-	{{-- WYSWYG TinyMCE --}}
+	{{-- WYSWYG TinyMCE for multiple select --}}
 	<script src="https://cdn.tiny.cloud/1/ueed0lgrhz99vu93ro4dvrwy946jqnx6hdybhdr15wk8qodg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 	<script>
       tinymce.init({

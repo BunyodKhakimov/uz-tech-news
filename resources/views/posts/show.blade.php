@@ -6,6 +6,7 @@
 
 @section('content')
 	<article class="post">
+
 		<header>
 			<div class="title">
 				<h2>{{ $post->title }}</h2>
@@ -28,15 +29,24 @@
 				</a>
 			</div>
 		</header>
+
 		<section>
 			<p>
 				{{-- <span class="image left">
 					<img src="{{ asset('images/pic13.jpg') }}" alt="" />
 				</span> --}}
+				
+				@if($post->image != null)
+					<span class="image left">
+						<img src="{{ asset('images/post_images/' . $post->image) }}" alt="post_image" />
+					</span>
+				@endif
+
 				{!! $post->body !!}
 				{{-- <script>alert("Hello World");</script> --}}
 			</p>
 		</section>
+
 		<footer>
 			<form action="{{ route('posts.destroy', $post->id) }}" method="post" id="delete_form">
 				@csrf
@@ -68,6 +78,9 @@
 				</ul>
 			</form>
 		</footer>
+
+		{{-- Comments --}}
+
 		<div class="collapse" id="collapseComment">
 			<div class="card card-body">
 				<section>
@@ -112,5 +125,6 @@
 				</section>
 			</div>
 		</div>
+
 	</article>
 @endsection
