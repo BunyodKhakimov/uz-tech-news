@@ -12,11 +12,61 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware'=>['web']], function(){
 
-Route::get('/', function () {
-    return view('welcome');
+	// PageController
+
+	Route::get('/author/{author}', 'PageController@getByAuthor')
+		->name('author');
+
+	Route::get('/category/{category_id}', 'PageController@getByCategory')
+		->name('category');
+
+	Route::get('/post/like/{id}', 'PageController@incrementLikes')
+		->name('likePost');
+	
+	Route::get('/post/{id}', 'PageController@getSinglePost')
+		->name('getSinglePost');
+
+	Route::get('/about', 'PageController@about')
+		->name('about');
+
+	Route::get('/contact', 'PageController@contact')
+		->name('contact');
+
+	Route::post('/contact', 'PageController@postContact')
+		->name('postContact');
+
+	Route::get('/parts', 'PageController@parts');
+
+	Route::get('/', 'PageController@index')
+		->name('home');
+
+	// PostController & Resources
+
+	Route::get('/post/hide/{id}', 'PostController@hiddenToggle')
+		->name('hidePost')
+		->middleware('auth');
+
+	Route::resource('posts', 'PostController')
+		->middleware('auth');
+
+	// Resources
+	// Route::resource('comments', 'CategoryController', 
+	// 	['except' => ['index', 'show', 'create']])
+	// 	->middleware('auth');
+		Route::post('/comments/{post_id}', 'CommentController@store')
+		->name('comments.store');
+
+	Route::resource('categories', 'CategoryController', ['except' => ['create']])
+		->middleware('auth');
+
+	Route::resource('tags', 'TagController', ['except' => ['create']])
+		->middleware('auth');
+
+	// Auth
+
+	Auth::routes();
+	
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
