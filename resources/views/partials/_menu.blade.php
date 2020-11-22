@@ -11,7 +11,7 @@
 		<ul class="links">
 			<li>
 				<a href="/">
-					<h3>Home</h3>
+					<h3>@lang('header.home')</h3>
 					{{-- <p>Feugiat tempus veroeros dolor</p> --}}
 				</a>
 			</li>
@@ -19,7 +19,7 @@
 			@if(isset($categories))
 				<li>
 					<a href="/categories">
-						<h3>Categories</h3>
+						<h3>@lang('header.categories')</h3>
 						@foreach($categories as $category)
 							<a href="{{ route('category', $category->id) }}">
 						    	<p>{{ $category->name }}</p>
@@ -32,7 +32,7 @@
 			@if(isset($tags))
 				<li>
 					<a href="/tags">
-						<h3>Tags</h3>
+						<h3>@lang('header.tags')</h3>
 						@foreach($tags as $tag)
 							<a href="{{ route('tags.show', $tag->id) }}">
 						    	<p>{{ $tag->name }}</p>
@@ -45,7 +45,7 @@
 			@if(Auth::check())
 				<li>
 					<a href="/posts">
-						<h3>Posts</h3>
+						<h3>@lang('header.post')</h3>
 						{{-- <p>Phasellus sed ultricies mi congue</p> --}}
 					</a>
 				</li>
@@ -53,15 +53,30 @@
 
 			<li>
 				<a href="/about">
-					<h3>About</h3>
+					<h3>@lang('header.about')</h3>
 					{{-- <p>Porta lectus amet ultricies</p> --}}
 				</a>
 			</li>
 
 			<li>
 				<a href="/contact">
-					<h3>Contact</h3>
+					<h3>@lang('header.contact')</h3>
 					{{-- <p>Porta lectus amet ultricies</p> --}}
+				</a>
+			</li>
+
+			<li>
+				<a href="/tags">
+					<h3>@lang('header.language')</h3>
+					<a href="{{ route('switch-lang', 'ru') }}">
+					    <p>RU</p>
+					</a>
+					<a href="{{ route('switch-lang', 'en') }}">
+						<p>EN</p>
+					</a>
+					<a href="{{ route('switch-lang', 'uz') }}">
+					    <p>UZ</p>
+					</a>
 				</a>
 			</li>
 		</ul>
@@ -74,7 +89,7 @@
 					<a href="javascript:{}"
 		            	onclick="event.preventDefault();
 		            	document.getElementById('logout-form').submit();"
-		            	class="button big fit">Logout
+		            	class="button big fit">@lang('button.logout')
 		            </a>
 		        </li>
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -82,10 +97,14 @@
 	            </form>
 	        @else
 				<li>
-					<a href="/login" class="button big fit">Log In</a>
+					<a href="/login" class="button big fit">
+						@lang('button.login')
+					</a>
 				</li>
 				<li>
-					<a href="/register" class="button big fit">Register</a>
+					<a href="/register" class="button big fit">
+						@lang('button.register')
+					</a>
 				</li>
 			@endif
 		</ul>

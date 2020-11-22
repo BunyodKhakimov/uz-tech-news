@@ -7,8 +7,8 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2>About Page</h2>
-			<p>Info about this project should be here.</p>
+			<h2>@lang('header.about')</h2>
+			<p>@lang('info.about.info')</p>
 		</div>
 		<div class="meta">
 			<time class="published" datetime="2015-10-18">October 18, 2015</time>

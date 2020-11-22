@@ -7,18 +7,18 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">All Categories</a></h2>
-			<p>Here you can edit categories and create new one.</p>
+			<h2><a href="#">@lang('info.category.header')</a></h2>
+			<p>@lang('info.category.edit_create')</p>
 		</div>
 		<hr>
 		<div class="meta">
 			<form action="{{ route('categories.store') }}" method="post">
 				@method('POST')
 				@csrf
-				<h3 class="text-center">New category</h3>
+				<h3 class="text-center">@lang('info.category.new')</h3>
 				<input type="text" name="name" placeholder="ex. category" required>
 				<button class="button fit mt-2" type="submit">
-					Create
+					@lang('button.create')
 				</button>
 			</form>
 		</div>
@@ -28,8 +28,8 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Category</th>
-					<th>Actions</th>
+					<th>@lang('header.categories')</th>
+					<th>@lang('header.actions')</th>
 				</tr>
 			</thead>
 			<tbody>

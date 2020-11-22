@@ -21,8 +21,8 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">Edit Post</a></h2>
-			<p>Here you can edit a post</p>
+			<h2><a href="#">@lang('info.post.edit_title')</a></h2>
+			<p>@lang('info.post.edit')</p>
 		</div>
 		<div class="meta">
 			<time class="published" datetime="2015-10-18">
@@ -32,21 +32,21 @@
 		</div>
 	</header>
 	<section>
-		<h3>Form</h3>
+		<h3>@lang('header.form')</h3>
 		<form method="post" action="{{ route('posts.update', $post->id) }}"  enctype="multipart/form-data" novalidate>
 			@csrf
 			@method('PUT')
 			<div class="row uniform">
 				<div class="6u 12u$(xsmall)">
-					<input type="text" name="title" id="title" value="{{ $post->title }}" placeholder="Title" required maxlength="100" />
+					<input type="text" name="title" id="title" value="{{ $post->title }}" placeholder="@lang('form.title')" required maxlength="100" />
 				</div>
 				<div class="6u$ 12u$(xsmall)">
-					<input type="text" name="subtitle" id="subtitle" value="{{ $post->subtitle }}" placeholder="Subtitle" required maxlength="100" />
+					<input type="text" name="subtitle" id="subtitle" value="{{ $post->subtitle }}" placeholder="@lang('form.subtitle')" required maxlength="100" />
 				</div>
 				<div class="12u$">
 					<div class="select-wrapper">
 						<select name="category_id" id="category" required>
-							<option value="">- Category -</option>
+							<option value="">- @lang('header.categories') -</option>
 							@foreach($categories as $category)
 								<option value="{{ $category->id }}">
 									{{ $category->name }}
@@ -67,21 +67,22 @@
 					</div>
 				</div>
 				<div class="12u$">
-					<textarea name="body" id="mytextarea" placeholder="Enter article body here..." rows="8" required>{{ $post->body }}</textarea>
+					<textarea name="body" id="mytextarea" 
+					placeholder="@lang('form.enter_article')" rows="8" required>{{ $post->body }}</textarea>
 				</div>
 				<div class="6u 12u$(small)">
 					<input type="checkbox" id="hidden" name="hidden" value="1">
-					<label for="hidden">Hidden</label>
+					<label for="hidden">@lang('form.hidden')</label>
 				</div>
 				<div class="12u$">
 					<ul class="actions">
 						<li>
 							<a class="button icon fa-upload" onclick="document.getElementById('inputFile').click();">
-								Upload pictures
+								@lang('button.upload')
 							</a>
 							<input class="fileInput" type="file" id="inputFile" name="image" multiple style="display: none"/>
 						</li>
-						<li><input type="submit" value="Save"/></li>
+						<li><input type="submit" value="@lang('button.save')"/></li>
 					</ul>
 				</div>
 			</div>
@@ -96,7 +97,7 @@
 	$(document).ready(function() {
 		$('.js-example-basic-multiple').select2(
 			{
-				placeholder: '   Select tags'
+				placeholder: '   @lang('form.select_tag')'
 			}
 		);
 	});

@@ -69,10 +69,14 @@
 					</li>
 					@if(Auth::check())
 					<li>
-						<a href="{{ route('posts.edit', $post->id) }}" class="icon fa-edit">Edit</a>
+						<a href="{{ route('posts.edit', $post->id) }}" class="icon fa-edit">
+							@lang('button.edit')
+						</a>
 					</li>
 					<li>
-						<a href="javascript:{}" onclick="document.getElementById('delete_form').submit();" class="icon fa-trash">Delete</a>
+						<a href="javascript:{}" onclick="document.getElementById('delete_form').submit();" class="icon fa-trash">
+							@lang('button.delete')
+						</a>
 					</li>
 					@endif
 				</ul>
@@ -84,7 +88,7 @@
 		<div class="collapse" id="collapseComment">
 			<div class="card card-body">
 				<section>
-					<h3>Comments</h3>
+					<h3>@lang('header.comments')</h3>
 					<div class="mini-posts">
 						@foreach($post->comments as $comment)
 							<article class="mini-post">
@@ -107,13 +111,13 @@
 						@csrf
 						<div class="row uniform">
 							<div class="12u$">
-								<textarea name="body" placeholder="Enter your comment..." rows="3" required></textarea>
+								<textarea name="body" placeholder="@lang('form.enter_comment')" rows="3" required></textarea>
 							</div>
 							<div class="6u$">
 								<ul class="actions">
 									<li>
 										<input type="submit"
-										value="Send comment"
+										value="@lang('button.send_comment')"
 										@if(!Auth::check())
 											disabled
 										@endif/>

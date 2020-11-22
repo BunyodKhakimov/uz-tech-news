@@ -5,7 +5,7 @@
 		<a href="/" class="logo"><img src="{{asset('images/logo3.jpg')}}" alt="" /></a>
 		<header>
 			<h2>UzTech.uz</h2>
-			<p>Bringing tech news closer</a></p>
+			<p>@lang('info.moto')</a></p>
 		</header>
 	</section>
 	<!-- Mini Posts -->
@@ -14,10 +14,10 @@
 	@yield('postlist')
 	<!-- About -->
 	<section class="blurb">
-		<h2>About</h2>
-		<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
+		<h2>@lang('header.about')</h2>
+		<p>@lang('info.about.brief')</p>
 		<ul class="actions">
-			<li><a href="/about" class="button">Learn More</a></li>
+			<li><a href="/about" class="button">@lang('button.more')</a></li>
 		</ul>
 	</section>
 	<!-- Footer -->

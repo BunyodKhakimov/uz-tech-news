@@ -11,8 +11,8 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">Edit Category</a></h2>
-			<p>Here you can edit a category</p>
+			<h2><a href="#">@lang('info.category.edit_title')</a></h2>
+			<p>@lang('info.category.edit')</p>
 		</div>
 		<div class="meta">
 			<time class="published" datetime="2015-10-18">
@@ -23,7 +23,7 @@
 		</div>
 	</header>
 	<section>
-		<h3>Enter categories's new name</h3>
+		<h3>@lang('info.category.enter_new')</h3>
 		<form method="post" action="{{ route('categories.update', $category->id) }}">
 			@csrf
 			@method('PUT')
@@ -33,7 +33,7 @@
 				</div>
 				<div class="6u$">
 					<ul class="actions">
-						<li><input type="submit" value="Save"/></li>
+						<li><input type="submit" value="@lang('button.save')"/></li>
 					</ul>
 				</div>
 			</div>

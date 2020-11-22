@@ -7,11 +7,13 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">All Posts</a></h2>
-			<p>Here you can edit posts and create new one.</p>
+			<h2><a href="#">@lang('info.post.header')</a></h2>
+			<p>@lang('info.post.edit_create')</p>
 		</div>
 		<div class="meta">
-			<a href="{{ route('posts.create') }}" class="button btn-block">Create Post</a>
+			<a href="{{ route('posts.create') }}" class="button btn-block">
+				@lang('info.post.new')
+			</a>
 		</div>
 	</header>
 	<div class="table-wrapper">
@@ -19,12 +21,12 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Title</th>
-					<th>Subtitle</th>
-					<th>Category</th>
-					<th>Body</th>
-					<th>Author</th>
-					<th>Action</th>
+					<th>@lang('header.title')</th>
+					<th>@lang('header.subtitle')</th>
+					<th>@lang('header.category')</th>
+					<th>@lang('header.body')</th>
+					<th>@lang('header.author')</th>
+					<th>@lang('header.actions')</th>
 				</tr>
 			</thead>
 			<tbody>

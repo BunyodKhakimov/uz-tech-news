@@ -114,7 +114,7 @@
 				<ul class="actions">
 					<li>
 						<a href="{{ route('getSinglePost', $post->id) }}" class="button big">
-							Continue Reading
+							@lang('button.continue')
 						</a>
 					</li>
 				</ul>
