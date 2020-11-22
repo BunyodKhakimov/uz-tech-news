@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -150,5 +151,10 @@ class PageController extends Controller
             ->withCategories($categories)
             ->with('most_liked_posts', $this->getMostLiked())
             ->with('most_viewed_posts', $this->getMostViewed());
+    }
+
+    public function switchLanguage($lang){
+        session()->put('locale', $lang);
+        return redirect()->back();
     }
 }

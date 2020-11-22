@@ -7,18 +7,18 @@
 <article class="post">
 	<header>
 		<div class="title">
-			<h2><a href="#">All tags</a></h2>
-			<p>Here you can edit tags and create new one.</p>
+			<h2><a href="#">@lang('info.tag.header')</a></h2>
+			<p>@lang('info.tag.edit_create')</p>
 		</div>
 		<hr>
 		<div class="meta">
 			<form action="{{ route('tags.store') }}" method="post">
 				@method('POST')
 				@csrf
-				<h3 class="text-center">New tag</h3>
+				<h3 class="text-center">@lang('info.tag.new')</h3>
 				<input type="text" name="name" required placeholder="ex. tag">
 				<button class="button fit mt-2" type="submit">
-					Create
+					@lang('button.create')
 				</button>
 			</form>
 		</div>
@@ -28,8 +28,8 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Tag</th>
-					<th>Actions</th>
+					<th>@lang('header.tags')</th>
+					<th>@lang('header.actions')</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware'=>['web']], function(){
+
+Route::group(['middleware'=>['web', 'locale']], function(){
 
 	// PageController
 
@@ -52,11 +53,13 @@ Route::group(['middleware'=>['web']], function(){
 		->middleware('auth');
 
 	// Resources
+
 	// Route::resource('comments', 'CategoryController', 
 	// 	['except' => ['index', 'show', 'create']])
 	// 	->middleware('auth');
-		Route::post('/comments/{post_id}', 'CommentController@store')
-		->name('comments.store');
+	
+	Route::post('/comments/{post_id}', 'CommentController@store')
+	->name('comments.store');
 
 	Route::resource('categories', 'CategoryController', ['except' => ['create']])
 		->middleware('auth');
@@ -67,6 +70,10 @@ Route::group(['middleware'=>['web']], function(){
 	// Auth
 
 	Auth::routes();
+
+	// Language switcher
+
+	Route::get('/{lang}', 'PageController@switchLanguage')->name('switch-lang');
 	
 });
 
