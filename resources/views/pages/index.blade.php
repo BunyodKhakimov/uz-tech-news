@@ -16,7 +16,7 @@
 						<time class="published" datetime="2015-10-20">
 							{{ date('F j, Y', strtotime($post->created_at))}}
 						</time>
-						<a href="{{ route('author', $post->user->name) }}" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
+						<a href="{{ route('author', $post->user->id) }}" class="author"><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 					</header>
 					<a href="{{ route('posts.show', $post->id) }}" class="image">
 						{{-- <img src="{{ asset('images/pic13.jpg') }}" alt="" /> --}}
@@ -89,7 +89,7 @@
 					<time class="published" datetime="2015-10-18">
 					{{ date('F j, Y', strtotime($post->created_at))}}
 					</time>
-					<a href="{{ route('author', $post->user->name) }}" class="author">
+					<a href="{{ route('author', $post->user->id) }}" class="author">
 						<span class="name">{{ $post->user->name }}</span><img src="{{ asset('images/profile.png') }}" alt="" />
 					</a>
 					<span class="badge badge-secondary text-capitalize">

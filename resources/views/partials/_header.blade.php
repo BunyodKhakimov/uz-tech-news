@@ -83,9 +83,14 @@
 				
 			@endif
 		</ul>
-	</nav>
+	</nav>	
 	<nav class="main">
 		<ul>
+			@if(Auth::check())
+				<li class="search">
+					<a class="fa-user" href="{{ route('profile') }}">{{ auth()->user()->name }}</a>
+				</li>
+			@endif
 			<li class="search">
 				<a class="fa-search" href="#search">
 					@lang('form.search')

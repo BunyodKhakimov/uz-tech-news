@@ -137,8 +137,8 @@ class PageController extends Controller
         return $mostViewedPosts;
     }
 
-    public function getByAuthor($author){
-        $posts = Post::where('author', $author)->orderBy('id', 'desc')->simplepaginate(3);
+    public function getByAuthor($id){
+        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->simplepaginate(3);
 
         if(sizeof($posts) == 0){
             Session::flash('info', 'No posts of this author found!');

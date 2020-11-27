@@ -17,7 +17,7 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 
 	// PageController
 
-	Route::get('/author/{author}', 'PageController@getByAuthor')
+	Route::get('/author/{id}', 'PageController@getByAuthor')
 		->name('author');
 
 	Route::get('/category/{category_id}', 'PageController@getByCategory')
@@ -43,6 +43,11 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	Route::get('/', 'PageController@index')
 		->name('home');
 
+	Route::get('/profile', function()
+	{ return view('users.profile'); })
+	->name('profile')
+	->middleware('auth');
+
 	// PostController & Resources
 
 	Route::get('/post/hide/{id}', 'PostController@hiddenToggle')
@@ -65,6 +70,9 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 		->middleware('auth');
 
 	Route::resource('tags', 'TagController', ['except' => ['create']])
+		->middleware('auth');
+
+	Route::resource('users', 'UserController', ['except' => ['create']])
 		->middleware('auth');
 
 	// Auth
