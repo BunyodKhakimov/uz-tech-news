@@ -5,6 +5,8 @@
 		<ul>
 			<li><a href="/">@lang('header.home')</a></li>
 
+            <li><a href="{{ route('external') }}">External</a></li>
+
 			{{-- <li><a href="/parts">Parts</a></li> --}}
 
 			@if(isset($categories))
@@ -58,9 +60,8 @@
 					    UZ
 					</a>
 				</div>
-				
+
 			</li>
-				
 
 			@if(Auth::check())
 				<li>
@@ -80,10 +81,10 @@
 						</a>
 					</div>
 				</li>
-				
+
 			@endif
 		</ul>
-	</nav>	
+	</nav>
 	<nav class="main">
 		<ul>
 			@if(Auth::check())

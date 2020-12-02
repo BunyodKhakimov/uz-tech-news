@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>['web', 'locale']], function(){
 
+    // Api news
+
+    Route::get('/external', 'ApiNewsController@index')
+        ->name('external');
+
 	// PageController
 
 	Route::get('/author/{id}', 'PageController@getByAuthor')
@@ -25,7 +30,7 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 
 	Route::get('/post/like/{id}', 'PageController@incrementLikes')
 		->name('likePost');
-	
+
 	Route::get('/post/{id}', 'PageController@getSinglePost')
 		->name('getSinglePost');
 
@@ -59,10 +64,10 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 
 	// Resources
 
-	// Route::resource('comments', 'CategoryController', 
+	// Route::resource('comments', 'CategoryController',
 	// 	['except' => ['index', 'show', 'create']])
 	// 	->middleware('auth');
-	
+
 	Route::post('/comments/{post_id}', 'CommentController@store')
 	->name('comments.store');
 
@@ -82,6 +87,6 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	// Language switcher
 
 	Route::get('/{lang}', 'PageController@switchLanguage')->name('switch-lang');
-	
+
 });
 

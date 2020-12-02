@@ -19,7 +19,7 @@ class PageController extends Controller
         $categories = Category::all();
 
         $tags = Tag::all();
-        
+
         return view('pages.index')
             ->withPosts($posts)
             ->withTags($tags)
@@ -56,10 +56,10 @@ class PageController extends Controller
         $data = array(
             'email' => $request->email,
             'subject' => $request->subject,
-            'body' => $request->body 
+            'body' => $request->body
         );
 
-        Mail::send('mail.contact', $data, 
+        Mail::send('mail.contact', $data,
             function ($message) use ($data) {
                 $message->from($data['email']);
                 $message->to('khakimov.bunyod99@gmail.com');
@@ -78,7 +78,7 @@ class PageController extends Controller
         $this->incrementViews($post);
 
         $categories = Category::all();
-        
+
         return view('posts.show')
             ->withPost($post)
             ->withCategories($categories);
