@@ -42,32 +42,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $posts = Post::where('category_id', $category_id)->orderBy('id', 'desc')->simplepaginate(3);
-
-        // if no posts found
-        if(sizeof($posts) == 0){
-
-            Session::flash('info', 'Posts for this category are not found!');
-            return redirect()->back();
-        }
-
-        $categories = Category::all();
-
-        return view('pages.index')
-            ->withPosts($posts)
-            ->withCategories($categories)
-            ->with('most_liked_posts', $this->getMostLiked())
-            ->with('most_viewed_posts', $this->getMostViewed());
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -117,7 +91,7 @@ class CategoryController extends Controller
         $postsCount = count($posts);
 
         if ($postsCount > 0) {
-            Session::flash('info', 
+            Session::flash('info',
                 'You can not delete category with ' . $postsCount . ' posts!');
         } else {
             $category->delete();

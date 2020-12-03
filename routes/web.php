@@ -60,7 +60,7 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 		->middleware('auth');
 
 	Route::resource('posts', 'PostController')
-		->middleware('auth');
+		->middleware('admin');
 
 	// Resources
 
@@ -69,16 +69,17 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	// 	->middleware('auth');
 
 	Route::post('/comments/{post_id}', 'CommentController@store')
-	->name('comments.store');
+	    ->name('comments.store')
+        ->middleware('auth');
 
-	Route::resource('categories', 'CategoryController', ['except' => ['create']])
-		->middleware('auth');
+	Route::resource('categories', 'CategoryController', ['except' => ['create', 'show']])
+		->middleware('admin');
 
-	Route::resource('tags', 'TagController', ['except' => ['create']])
-		->middleware('auth');
+	Route::resource('tags', 'TagController', ['except' => ['create', 'show']])
+		->middleware( 'admin');
 
 	Route::resource('users', 'UserController', ['except' => ['create']])
-		->middleware('auth');
+		->middleware('admin');
 
 	// Auth
 

@@ -9,7 +9,7 @@
 
 			{{-- <li><a href="/parts">Parts</a></li> --}}
 
-			@if(isset($categories))
+			@if(sizeof($categories) != 0)
 				<li>
 					<a id="dropdownMenuLinkCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.categories')
@@ -25,7 +25,7 @@
 				</li>
 			@endif
 
-			@if(isset($tags))
+			@if(sizeof($tags) != 0)
 				<li>
 					<a id="dropdownMenuLinkTags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.tags')
@@ -33,7 +33,7 @@
 
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuLinkTags">
 						@foreach($tags as $tag)
-						    <a class="dropdown-item" href="#">
+						    <a class="dropdown-item">
 							    {{ $tag->name }}
 							</a>
 						@endforeach
@@ -63,7 +63,7 @@
 
 			</li>
 
-			@if(Auth::check())
+			@if(Auth::check() && Auth::user()->admin)
 				<li>
 					<a id="dropdownMenuLinkAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.admin')

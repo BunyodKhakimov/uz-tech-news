@@ -16,9 +16,9 @@
 				</a>
 			</li>
 
-			@if(isset($categories))
+			@if(sizeof($categories) != 0)
 				<li>
-					<a href="/categories">
+					<a>
 						<h3>@lang('header.categories')</h3>
 						@foreach($categories as $category)
 							<a href="{{ route('category', $category->id) }}">
@@ -29,24 +29,15 @@
 				</li>
 			@endif
 
-			@if(isset($tags))
+			@if(sizeof($tags) != 0)
 				<li>
-					<a href="/tags">
+					<a>
 						<h3>@lang('header.tags')</h3>
 						@foreach($tags as $tag)
-							<a href="{{ route('tags.show', $tag->id) }}">
+							<a>
 						    	<p>{{ $tag->name }}</p>
 							</a>
 						@endforeach
-					</a>
-				</li>
-			@endif
-			
-			@if(Auth::check())
-				<li>
-					<a href="/posts">
-						<h3>@lang('header.post')</h3>
-						{{-- <p>Phasellus sed ultricies mi congue</p> --}}
 					</a>
 				</li>
 			@endif
@@ -66,7 +57,7 @@
 			</li>
 
 			<li>
-				<a href="/tags">
+				<a>
 					<h3>@lang('header.language')</h3>
 					<a href="{{ route('switch-lang', 'ru') }}">
 					    <p>RU</p>
