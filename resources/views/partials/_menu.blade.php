@@ -16,7 +16,7 @@
 				</a>
 			</li>
 
-			@if(sizeof($categories) != 0)
+			@if(isset($categories) && sizeof($categories) != 0)
 				<li>
 					<a>
 						<h3>@lang('header.categories')</h3>
@@ -29,7 +29,7 @@
 				</li>
 			@endif
 
-			@if(sizeof($tags) != 0)
+			@if(isset($tags) && sizeof($tags) != 0)
 				<li>
 					<a>
 						<h3>@lang('header.tags')</h3>

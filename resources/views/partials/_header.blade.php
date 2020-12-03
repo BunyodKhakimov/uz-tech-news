@@ -9,7 +9,7 @@
 
 			{{-- <li><a href="/parts">Parts</a></li> --}}
 
-			@if(sizeof($categories) != 0)
+			@if(isset($categories) && sizeof($categories) != 0)
 				<li>
 					<a id="dropdownMenuLinkCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.categories')
@@ -25,7 +25,7 @@
 				</li>
 			@endif
 
-			@if(sizeof($tags) != 0)
+			@if(isset($tags) && sizeof($tags) != 0)
 				<li>
 					<a id="dropdownMenuLinkTags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.tags')

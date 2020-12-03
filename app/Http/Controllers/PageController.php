@@ -80,8 +80,11 @@ class PageController extends Controller
 
         $categories = Category::all();
 
+        $tags = Tag::all();
+
         return view('posts.show')
             ->withPost($post)
+            ->withTags($tags)
             ->withCategories($categories);
     }
 
