@@ -25,8 +25,9 @@
 			<p>@lang('info.post.create_subtitle')</p>
 		</div>
 		<div class="meta">
-			<time class="published" datetime="2015-10-18">October 18, 2015</time>
-			<a href="#" class="author"><span class="name">Jane Doe</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
+            <p>On board since:</p>
+			<time class="published" datetime="2015-10-18">{{ date('F j, Y', strtotime(Auth::user()->created_at))}}</time>
+			<a href="#" class="author"><span class="name">{{ Auth::user()->name }}</span><img src="{{ asset('images/profile.png') }}" alt="" /></a>
 		</div>
 	</header>
 	<section>
@@ -35,11 +36,11 @@
 			@csrf
 			<div class="row uniform">
 				<div class="6u 12u$(xsmall)">
-					<input type="text" name="title" id="title" value="" 
+					<input type="text" name="title" id="title" value=""
 					placeholder="@lang('form.title')" required maxlength="100" />
 				</div>
 				<div class="6u$ 12u$(xsmall)">
-					<input type="text" name="subtitle" id="subtitle" value="" 
+					<input type="text" name="subtitle" id="subtitle" value=""
 					placeholder="@lang('form.subtitle')" required maxlength="100" />
 				</div>
 				<div class="12u$">
@@ -66,7 +67,7 @@
 					</div>
 				</div>
 				<div class="12u$">
-					<textarea name="body" id="mytextarea" 
+					<textarea name="body" id="mytextarea"
 					placeholder="@lang('form.enter_article')" rows="8" required></textarea>
 				</div>
 				<div class="12u$">

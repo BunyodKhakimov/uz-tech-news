@@ -16,6 +16,9 @@ use HTMLPurifier;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin', ['except'=>['store', 'create', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +29,11 @@ class PostController extends Controller
         $posts = Post::orderBy('id', 'desc')->simplepaginate(10);
 
         $categories = Category::all();
+        $tags = Tag::all();
 
         return view('posts.index')
             ->withPosts($posts)
+            ->withTags($tags)
             ->withCategories($categories);
     }
 
@@ -41,7 +46,9 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('posts.create')->withCategories($categories)->withTags($tags);
+        return view('posts.create')
+            ->withCategories($categories)
+            ->withTags($tags);
     }
 
     /**
@@ -58,7 +65,6 @@ class PostController extends Controller
             'title' => 'required|max:100',
             'subtitle' => 'required|max:100',
             'category_id' => 'required',
-            'title' => 'required|max:100',
             'body' => 'required',
             'image' => 'sometimes|image'
         ));
@@ -121,8 +127,11 @@ class PostController extends Controller
 
         $categories = Category::all();
 
+        $tags = Tag::all();
+
         return view('posts.show')
             ->withPost($post)
+            ->withTags($tags)
             ->withCategories($categories);
     }
 

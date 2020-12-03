@@ -54,13 +54,15 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	->middleware('auth');
 
 	// PostController & Resources
+    Route::get('/suggest', 'PostController@create')
+        ->name('suggest')
+        ->middleware('auth');
 
 	Route::get('/post/hide/{id}', 'PostController@hiddenToggle')
 		->name('hidePost')
-		->middleware('auth');
-
-	Route::resource('posts', 'PostController')
 		->middleware('admin');
+
+	Route::resource('posts', 'PostController');
 
 	// Resources
 

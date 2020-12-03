@@ -63,6 +63,14 @@
 
 			</li>
 
+            {{--        Auth User      --}}
+
+            @if(Auth::check() && !Auth::user()->admin)
+                <li><a href="{{ route('suggest') }}">Suggest Post</a></li>
+            @endif
+
+            {{--        Admin       --}}
+
 			@if(Auth::check() && Auth::user()->admin)
 				<li>
 					<a id="dropdownMenuLinkAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
