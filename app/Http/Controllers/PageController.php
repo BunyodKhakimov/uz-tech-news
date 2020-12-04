@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App;
+use App\User;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -19,7 +20,7 @@ class PageController extends Controller
         $categories = Category::all();
 
         $tags = Tag::all();
-        
+
         return view('pages.index')
             ->withPosts($posts)
             ->withTags($tags)
@@ -56,10 +57,10 @@ class PageController extends Controller
         $data = array(
             'email' => $request->email,
             'subject' => $request->subject,
-            'body' => $request->body 
+            'body' => $request->body
         );
 
-        Mail::send('mail.contact', $data, 
+        Mail::send('mail.contact', $data,
             function ($message) use ($data) {
                 $message->from($data['email']);
                 $message->to('khakimov.bunyod99@gmail.com');
@@ -78,9 +79,12 @@ class PageController extends Controller
         $this->incrementViews($post);
 
         $categories = Category::all();
-        
+
+        $tags = Tag::all();
+
         return view('posts.show')
             ->withPost($post)
+            ->withTags($tags)
             ->withCategories($categories);
     }
 
@@ -116,10 +120,17 @@ class PageController extends Controller
             return redirect()->back();
         }
 
+        $tags = Tag::all();
         $categories = Category::all();
+
+        $category = Category::whereId($category_id)->get('name');
+        $category_name = $category[0]['name'];
+
+        Session::flash('success', 'Posts of ' . $category_name . ' category are shown!');
 
         return view('pages.index')
             ->withPosts($posts)
+            ->withTags($tags)
             ->withCategories($categories)
             ->with('most_liked_posts', $this->getMostLiked())
             ->with('most_viewed_posts', $this->getMostViewed());
@@ -137,18 +148,25 @@ class PageController extends Controller
         return $mostViewedPosts;
     }
 
-    public function getByAuthor($id){
-        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->simplepaginate(3);
+    public function getByAuthor($user_id){
+        $posts = Post::where('user_id', $user_id)->orderBy('id', 'desc')->simplepaginate(3);
 
         if(sizeof($posts) == 0){
             Session::flash('info', 'No posts of this author found!');
             return redirect()->back();
         }
 
+        $tags = Tag::all();
         $categories = Category::all();
+
+        $author = User::whereId($user_id)->get('name');
+        $author_name = $author[0]['name'];
+
+        Session::flash('success', 'Posts of ' . $author_name . ' are shown!');
 
         return view('pages.index')->withPosts($posts)
             ->withCategories($categories)
+            ->withTags($tags)
             ->with('most_liked_posts', $this->getMostLiked())
             ->with('most_viewed_posts', $this->getMostViewed());
     }

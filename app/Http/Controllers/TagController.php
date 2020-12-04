@@ -47,17 +47,6 @@ class TagController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -103,7 +92,7 @@ class TagController extends Controller
         $tag = Tag::find($id);
 
         $tag->posts()->detach();
-        
+
         $tag->delete();
 
         Session::flash('success', 'Tag successfully deleted!');

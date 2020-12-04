@@ -42,13 +42,10 @@
 		</section>
 
 		<footer>
-			
+
 				<ul class="stats">
 					<li>
-						<a>Admin</a>
-					</li>
-					<li>
-						<a class="icon fa-heart">28</a>
+						<a>{{ auth()->user()->admin ? 'admin' : 'user' }}</a>
 					</li>
 					<li>
 						<a class="icon fa-file">

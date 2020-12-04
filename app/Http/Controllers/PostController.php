@@ -16,6 +16,9 @@ use HTMLPurifier;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin', ['except'=>['store', 'create', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +29,11 @@ class PostController extends Controller
         $posts = Post::orderBy('id', 'desc')->simplepaginate(10);
 
         $categories = Category::all();
+        $tags = Tag::all();
 
         return view('posts.index')
             ->withPosts($posts)
+            ->withTags($tags)
             ->withCategories($categories);
     }
 
@@ -41,7 +46,9 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('posts.create')->withCategories($categories)->withTags($tags);
+        return view('posts.create')
+            ->withCategories($categories)
+            ->withTags($tags);
     }
 
     /**
@@ -53,12 +60,11 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // validation
-        
+
         $this->validate($request, array(
             'title' => 'required|max:100',
             'subtitle' => 'required|max:100',
             'category_id' => 'required',
-            'title' => 'required|max:100',
             'body' => 'required',
             'image' => 'sometimes|image'
         ));
@@ -77,7 +83,7 @@ class PostController extends Controller
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/post_images/' . $filename);
 
-            Image::make($image)->save($location); 
+            Image::make($image)->save($location);
 
             // 840x341 post, 351x176 minipost, 51x51 postlist
 
@@ -85,25 +91,25 @@ class PostController extends Controller
         }
 
         // store in DB
-        
+
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->category_id = $request->category_id;
         $post->body = $request->body;
 
         // Setting up relations
-        
+
         $user = Auth::user();
         $user->post()->save($post);
 
         if(isset($request->tags)){
-            $post->tags()->sync($request->tags, false); 
+            $post->tags()->sync($request->tags, false);
         }
 
         //notificaation
 
         Session::flash('success', 'Post is successfully saved!');
-        
+
         // redirect
 
         return redirect()->route('posts.show', $post->id);
@@ -121,8 +127,11 @@ class PostController extends Controller
 
         $categories = Category::all();
 
+        $tags = Tag::all();
+
         return view('posts.show')
             ->withPost($post)
+            ->withTags($tags)
             ->withCategories($categories);
     }
 
@@ -139,7 +148,7 @@ class PostController extends Controller
         $categories = Category::all();
 
         $tags = Tag::all();
-        
+
         return view('posts.edit')
             ->withPost($post)
             ->withTags($tags)
@@ -167,7 +176,7 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if($request->hasFile('image')){
-            
+
             // create a file
 
             $image = $request->file('image');
@@ -194,7 +203,7 @@ class PostController extends Controller
         $post->update();
 
         if(isset($request->tags)){
-            $post->tags()->sync($request->tags, false);  
+            $post->tags()->sync($request->tags, false);
         }
 
         Session::flash('success', 'Post is successfully updated!');

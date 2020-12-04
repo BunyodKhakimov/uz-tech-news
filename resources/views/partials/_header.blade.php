@@ -5,9 +5,11 @@
 		<ul>
 			<li><a href="/">@lang('header.home')</a></li>
 
+            <li><a href="{{ route('external') }}">External</a></li>
+
 			{{-- <li><a href="/parts">Parts</a></li> --}}
 
-			@if(isset($categories))
+			@if(isset($categories) && sizeof($categories) != 0)
 				<li>
 					<a id="dropdownMenuLinkCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.categories')
@@ -23,7 +25,7 @@
 				</li>
 			@endif
 
-			@if(isset($tags))
+			@if(isset($tags) && sizeof($tags) != 0)
 				<li>
 					<a id="dropdownMenuLinkTags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.tags')
@@ -31,7 +33,7 @@
 
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuLinkTags">
 						@foreach($tags as $tag)
-						    <a class="dropdown-item" href="#">
+						    <a class="dropdown-item">
 							    {{ $tag->name }}
 							</a>
 						@endforeach
@@ -58,11 +60,18 @@
 					    UZ
 					</a>
 				</div>
-				
-			</li>
-				
 
-			@if(Auth::check())
+			</li>
+
+            {{--        Auth User      --}}
+
+            @if(Auth::check() && !Auth::user()->admin)
+                <li><a href="{{ route('suggest') }}">Suggest Post</a></li>
+            @endif
+
+            {{--        Admin       --}}
+
+			@if(Auth::check() && Auth::user()->admin)
 				<li>
 					<a id="dropdownMenuLinkAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@lang('header.admin')
@@ -78,12 +87,15 @@
 						<a class="dropdown-item" href="/categories">
 							@lang('header.categories')
 						</a>
+                        <a class="dropdown-item" href="/users">
+                            Users
+                        </a>
 					</div>
 				</li>
-				
+
 			@endif
 		</ul>
-	</nav>	
+	</nav>
 	<nav class="main">
 		<ul>
 			@if(Auth::check())

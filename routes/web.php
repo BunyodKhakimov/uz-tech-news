@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>['web', 'locale']], function(){
 
+    // Api news
+
+    Route::get('/external', 'ApiNewsController@index')
+        ->name('external');
+
 	// PageController
 
 	Route::get('/author/{id}', 'PageController@getByAuthor')
@@ -25,7 +30,7 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 
 	Route::get('/post/like/{id}', 'PageController@incrementLikes')
 		->name('likePost');
-	
+
 	Route::get('/post/{id}', 'PageController@getSinglePost')
 		->name('getSinglePost');
 
@@ -43,37 +48,46 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	Route::get('/', 'PageController@index')
 		->name('home');
 
-	Route::get('/profile', function()
-	{ return view('users.profile'); })
-	->name('profile')
-	->middleware('auth');
-
 	// PostController & Resources
+    Route::get('/suggest', 'PostController@create')
+        ->name('suggest')
+        ->middleware('auth');
 
 	Route::get('/post/hide/{id}', 'PostController@hiddenToggle')
 		->name('hidePost')
-		->middleware('auth');
+		->middleware('admin');
 
-	Route::resource('posts', 'PostController')
-		->middleware('auth');
+	Route::resource('posts', 'PostController');
 
 	// Resources
 
-	// Route::resource('comments', 'CategoryController', 
+	// Route::resource('comments', 'CategoryController',
 	// 	['except' => ['index', 'show', 'create']])
 	// 	->middleware('auth');
-	
+
 	Route::post('/comments/{post_id}', 'CommentController@store')
-	->name('comments.store');
+	    ->name('comments.store')
+        ->middleware('auth');
 
-	Route::resource('categories', 'CategoryController', ['except' => ['create']])
-		->middleware('auth');
+	Route::resource('categories', 'CategoryController', ['except' => ['create', 'show']])
+		->middleware('admin');
 
-	Route::resource('tags', 'TagController', ['except' => ['create']])
-		->middleware('auth');
+	Route::resource('tags', 'TagController', ['except' => ['create', 'show']])
+		->middleware( 'admin');
+
+	// User
+
+    Route::get('/profile', function()
+    { return view('users.profile'); })
+        ->name('profile')
+        ->middleware('auth');
 
 	Route::resource('users', 'UserController', ['except' => ['create']])
-		->middleware('auth');
+		->middleware('admin');
+
+	Route::get('/new-admin/{id}', 'UserController@makeAdmin')
+        ->name('make-admin')
+        ->middleware('admin');
 
 	// Auth
 
@@ -82,6 +96,6 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	// Language switcher
 
 	Route::get('/{lang}', 'PageController@switchLanguage')->name('switch-lang');
-	
+
 });
 
