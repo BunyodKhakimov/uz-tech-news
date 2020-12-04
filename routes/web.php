@@ -48,11 +48,6 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	Route::get('/', 'PageController@index')
 		->name('home');
 
-	Route::get('/profile', function()
-	{ return view('users.profile'); })
-	->name('profile')
-	->middleware('auth');
-
 	// PostController & Resources
     Route::get('/suggest', 'PostController@create')
         ->name('suggest')
@@ -80,8 +75,19 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	Route::resource('tags', 'TagController', ['except' => ['create', 'show']])
 		->middleware( 'admin');
 
+	// User
+
+    Route::get('/profile', function()
+    { return view('users.profile'); })
+        ->name('profile')
+        ->middleware('auth');
+
 	Route::resource('users', 'UserController', ['except' => ['create']])
 		->middleware('admin');
+
+	Route::get('/new-admin/{id}', 'UserController@makeAdmin')
+        ->name('make-admin')
+        ->middleware('admin');
 
 	// Auth
 

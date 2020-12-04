@@ -87,6 +87,9 @@
 						<a class="dropdown-item" href="/categories">
 							@lang('header.categories')
 						</a>
+                        <a class="dropdown-item" href="/users">
+                            Users
+                        </a>
 					</div>
 				</li>
 
