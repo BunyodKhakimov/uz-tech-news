@@ -33,7 +33,7 @@
 
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuLinkTags">
 						@foreach($tags as $tag)
-						    <a class="dropdown-item">
+						    <a href="{{ route('tag', $tag->id) }}" class="dropdown-item">
 							    {{ $tag->name }}
 							</a>
 						@endforeach

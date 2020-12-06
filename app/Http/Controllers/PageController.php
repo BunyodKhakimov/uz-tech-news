@@ -8,6 +8,7 @@ use App\User;
 use App\Post;
 use App\Category;
 use App\Tag;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Mail;
 
@@ -127,6 +128,44 @@ class PageController extends Controller
         $category_name = $category[0]['name'];
 
         Session::flash('success', 'Posts of ' . $category_name . ' category are shown!');
+
+        return view('pages.index')
+            ->withPosts($posts)
+            ->withTags($tags)
+            ->withCategories($categories)
+            ->with('most_liked_posts', $this->getMostLiked())
+            ->with('most_viewed_posts', $this->getMostViewed());
+    }
+
+    public function getByTag($tag_id){
+	    // getting all data from post_tag table
+
+        $post_tag = DB::table('post_tag')->where('tag_id', $tag_id)->get();
+
+        // construct post_id array
+
+        foreach ($post_tag as $post){
+            echo $post->post_id;
+            $posts_id[] = $post->post_id;
+        }
+
+        $posts = Post::whereIn('id', $posts_id)->orderBy('id', 'desc')->simplepaginate(3)   ;
+
+        // if no posts found
+
+        if(sizeof($posts) == 0){
+
+            Session::flash('info', 'Posts with this tag are not found!');
+            return redirect()->back();
+        }
+
+        $tags = Tag::all();
+        $categories = Category::all();
+
+        $tag = Tag::whereId($tag_id)->get('name');
+        $tag_name = $tag[0]['name'];
+
+        Session::flash('success', 'Posts with tag ' . $tag_name . ' are shown!');
 
         return view('pages.index')
             ->withPosts($posts)

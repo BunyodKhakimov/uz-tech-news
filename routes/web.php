@@ -28,6 +28,9 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 	Route::get('/category/{category_id}', 'PageController@getByCategory')
 		->name('category');
 
+    Route::get('/tag/{tag_id}', 'PageController@getByTag')
+        ->name('tag');
+
 	Route::get('/post/like/{id}', 'PageController@incrementLikes')
 		->name('likePost');
 
