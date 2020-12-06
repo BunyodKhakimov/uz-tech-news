@@ -6,11 +6,11 @@
     <article class="post">
         <header>
             <div class="title">
-                <h2><a href="#">All users</a></h2>
-                <p>Here you may observe users.</p>
+                <h2><a href="#">@lang('info.user.title')</a></h2>
+                <p>@lang('info.user.subtitle')</p>
             </div>
             <div class="meta">
-                <p>Welcome back</p>
+                <p>@lang('info.user.welcome')</p>
                  <a class="author">
 					<span class="name">
 						{{ auth()->user()->name }}
@@ -24,10 +24,10 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Posts</th>
+                    <th>@lang('info.user.name')</th>
+                    <th>@lang('form.email')</th>
+                    <th>@lang('info.user.role')</th>
+                    <th>@lang('header.posts')</th>
                     <th>@lang('header.actions')</th>
                 </tr>
                 </thead>
@@ -36,7 +36,13 @@
                     <tr>
                         <th>{{ $user->name }}</th>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->admin ? 'admin' : 'user' }}</td>
+                        <td>
+                            @if($user->admin)
+                                @lang('info.role.admin')
+                            @else
+                                @lang('info.role.user')
+                            @endif
+                        </td>
                         <td>{{ $user->post()->count() }}</td>
                         <td>
                             <div class="row">

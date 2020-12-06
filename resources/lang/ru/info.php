@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
 	'moto'		=> 'Привнося тех-новости ближе',
@@ -38,7 +38,24 @@ return [
 
 		Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis agittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.',
 	],
-	
+    'user'	=> [
+        'subtitle'	=> 'Управление пользователями.',
+        'title'	    => 'Все пользователи',
+        'role'      => 'Роль',
+        'name'      => 'Имя',
+        'welcome'   => 'Добро пожаловать',
+    ],
+    'profile'	=> [
+        'subtitle'	=> 'Насладись собой.',
+        'title'	    => 'Профиль',
+        'about'     => 'Про пользователя',
+        'here'      => 'Здесь с',
+    ],
+    'role'	=> [
+        'admin'	    => 'Администратор',
+        'user'	    => 'Пользователь',
+    ],
+
 ];
 
 ?>

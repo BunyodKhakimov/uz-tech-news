@@ -5,7 +5,7 @@
 		<ul>
 			<li><a href="/">@lang('header.home')</a></li>
 
-            <li><a href="{{ route('external') }}">External</a></li>
+            <li><a href="{{ route('external') }}">@lang('header.external')</a></li>
 
 			{{-- <li><a href="/parts">Parts</a></li> --}}
 
@@ -88,7 +88,7 @@
 							@lang('header.categories')
 						</a>
                         <a class="dropdown-item" href="/users">
-                            Users
+                            @lang('header.users')
                         </a>
 					</div>
 				</li>

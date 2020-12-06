@@ -39,6 +39,24 @@ return [
 
 		Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis agittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.',
 	],
+    'user'	=> [
+        'subtitle'	=> 'Here you may observe users.',
+        'title'	    => 'All users',
+        'role'      => 'Role',
+        'name'      => 'Name',
+        'welcome'   => 'Welcome back'
+    ],
+    'profile'	=> [
+        'subtitle'	=> 'Enjoy yourself.',
+        'title'	    => 'Profile',
+        'about'     => 'About',
+        'here'      => 'On board since',
+    ],
+    'role'	=> [
+        'admin'	    => 'Admin',
+        'user'	    => 'User',
+    ],
+
 
 ];
 

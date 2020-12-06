@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
 	'moto'		=> 'Texno yangiliklarni yaqinlashtira',
@@ -38,6 +38,23 @@ return [
 
 		Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis agittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.',
 	],
+    'user'	=> [
+        'subtitle'	=> 'Foydalanuvchini boshqarish',
+        'title'	    => 'Barcha foydalanuvchilar',
+        'role'      => 'Rol',
+        'name'      => 'Ism',
+        'welcome'   => 'Xush kelibsiz',
+    ],
+    'profile'	=> [
+        'subtitle'	=> 'O\'zingizdan zavqlaning.',
+        'title'	    => 'Profil',
+        'about'     => 'Foydalanuvchi haqida',
+        'here'      => 'O\'shandan beri shu erda',
+    ],
+    'role'	=> [
+        'admin'	    => 'Admin',
+        'user'	    => 'Foydalanuvchi',
+    ],
 
 ];
 

@@ -1,9 +1,11 @@
-<?php 
+<?php
 
 return [
 	'home' 			=> 'Home',
+    'external' 		=> 'External',
 	'categories'	=> 'Categories',
 	'tags' 			=> 'Tags',
+    'users'		    => 'Users',
 	'about' 		=> 'About',
 	'contact' 		=> 'Contact',
 	'post'			=> 'Posts',

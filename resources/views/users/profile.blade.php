@@ -1,6 +1,6 @@
 @extends('layouts.demo')
 
-@section('title', )
+@section('title')
 	{{ auth()->user()->name }}
 @endsection
 
@@ -9,11 +9,11 @@
 
 		<header>
 			<div class="title">
-				<h2>Profile</h2>
-				<p>Enjoy yourself</p>
+				<h2>@lang('info.profile.title')</h2>
+				<p>@lang('info.profile.subtitle')</p>
 			</div>
 			<div class="meta">
-				<p>On board since:</p>
+				<p>@lang('info.profile.here'):</p>
 				<time class="published" datetime="2015-10-18">
 					{{ date('F j, Y', strtotime(auth()->user()->created_at))}}
 				</time>
@@ -23,7 +23,13 @@
 					</span>
 					<img src="{{ asset('images/profile.png') }}" alt="" />
 				</a> --}}
-				<span class="badge badge-secondary text-capitalize">Admin</span>
+				<span class="badge badge-secondary text-capitalize">
+                    @if(auth()->user()->admin)
+                        @lang('info.role.admin')
+                    @else
+                        @lang('info.role.user')
+                    @endif
+                </span>
 			</div>
 		</header>
 
@@ -33,9 +39,9 @@
 					<img src="{{ asset('images/profile.png') }}" alt="" />
 				</span>
 				<strong>ID:</strong> {{ auth()->user()->id }} <br>
-				<strong>Name:</strong> {{ auth()->user()->name }} <br>
-				<strong>Email:</strong> {{ auth()->user()->email }} <br>
-				<strong>About:</strong>
+				<strong>@lang('info.user.name'):</strong> {{ auth()->user()->name }} <br>
+				<strong>@lang('form.email')</strong> {{ auth()->user()->email }} <br>
+				<strong>@lang('info.profile.about'):</strong>
 				Lorem, ipsum dolor sit amet, consectetur adipisicing elit. Sed ullam delectus facere distinctio laudantium ipsum dolores enim a, provident hic dolor recusandae quae rem nobis eos, fuga eius perferendis repellat id ad? Modi repudiandae consequatur, molestias. Obcaecati illo vero doloribus labore accusantium quam dolorem natus itaque, distinctio sunt nihil, cumque voluptatem perspiciatis provident sint delectus deserunt, vel corporis suscipit corrupti facilis pariatur. Corrupti, labore? Sint expedita est ipsam dolorum consequatur eum labore veniam placeat rem facere! Error quia voluptate vitae commodi fugiat cum tempora voluptates quisquam, nisi sint esse fuga delectus, facere minus ex distinctio, quasi optio id. Facere, modi.
 				{{-- <script>alert("Hello World");</script> --}}
 			</p>
@@ -45,7 +51,13 @@
 
 				<ul class="stats">
 					<li>
-						<a>{{ auth()->user()->admin ? 'admin' : 'user' }}</a>
+						<a>
+                            @if(auth()->user()->admin)
+                                @lang('info.role.admin')
+                            @else
+                                @lang('info.role.user')
+                            @endif
+                        </a>
 					</li>
 					<li>
 						<a class="icon fa-file">

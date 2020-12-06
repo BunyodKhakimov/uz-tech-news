@@ -1,9 +1,11 @@
-<?php 
+<?php
 
 return [
 	'home' 			=> 'Bosh Sahifa',
+    'external' 		=> 'Tashqi manba',
 	'categories'	=> 'Toifalar',
 	'tags' 			=> 'Teglar',
+    'users'		    => 'Foydalanuvchilar',
 	'about' 		=> 'Sayt haqida',
 	'contact' 		=> 'Aloqa',
 	'post'			=> 'Maqolalar',
