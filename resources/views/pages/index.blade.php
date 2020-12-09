@@ -20,7 +20,7 @@
 					</header>
 					<a href="{{ route('posts.show', $post->id) }}" class="image">
 						{{-- <img src="{{ asset('images/pic13.jpg') }}" alt="" /> --}}
-						<img 
+						<img
 							@if($post->image == null) src="{{ asset('images/pic15.jpg') }}"
 							@else src="{{ asset('images/post_images/' . $post->image) }}"
 							@endif
@@ -99,7 +99,7 @@
 			</header>
 
 			<a href="{{ route('posts.show', $post->id) }}" class="image featured">
-				<img 
+				<img
 					@if($post->image == null) src="{{ asset('images/pic14.jpg') }}"
 					@else src="{{ asset('images/post_images/' . $post->image) }}"
 					@endif
@@ -120,7 +120,7 @@
 				</ul>
 				<ul class="stats">
 					<li>
-						<a href="{{ route('category', $post->category->name) }}">{{ $post->category->name }}</a>
+						<a href="{{ route('category', $post->category->id) }}">{{ $post->category->name }}</a>
 					</li>
 					<li>
 						<a href="{{ route('likePost', $post->id) }}" class="icon fa-heart">{{ $post->likes }}</a>

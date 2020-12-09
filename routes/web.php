@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,16 +21,18 @@ Route::group(['middleware'=>['web', 'locale']], function(){
     Route::get('/external', 'ApiNewsController@index')
         ->name('external');
 
-	// PageController
+    // SearchController
 
-	Route::get('/author/{id}', 'PageController@getByAuthor')
-		->name('author');
+    Route::get('/author/{id}', 'SearchController@getByAuthor')
+        ->name('author');
 
-	Route::get('/category/{category_id}', 'PageController@getByCategory')
-		->name('category');
+    Route::get('/category/{category_id}', 'SearchController@getByCategory')
+        ->name('category');
 
-    Route::get('/tag/{tag_id}', 'PageController@getByTag')
+    Route::get('/tag/{tag_id}', 'SearchController@getByTag')
         ->name('tag');
+
+	// PageController
 
 	Route::get('/post/like/{id}', 'PageController@incrementLikes')
 		->name('likePost');
@@ -52,6 +55,7 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 		->name('home');
 
 	// PostController & Resources
+
     Route::get('/suggest', 'PostController@create')
         ->name('suggest')
         ->middleware('auth');
@@ -98,7 +102,7 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 
 	// Language switcher
 
-	Route::get('/{lang}', 'PageController@switchLanguage')->name('switch-lang');
+	Route::get('/{lang}', 'HomeController@switchLanguage')->name('switch-lang');
 
 });
 
