@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostSeeder extends Seeder
 {
@@ -22,7 +23,7 @@ class PostSeeder extends Seeder
             'category_id' => 3,
             'likes' => 5,
             'views' => 10
-            
+
         ]);
 
         Post::create([
