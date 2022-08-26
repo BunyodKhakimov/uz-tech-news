@@ -52,6 +52,10 @@ class PageController extends Controller
         return view('pages.contact')->withCategories($categories)->withTags($tags);
     }
 
+    public function profile(){
+        return view('users.profile');
+    }
+
     public function postContact(Request $request){
         $this->validate($request, array(
             'email' => 'required|email',

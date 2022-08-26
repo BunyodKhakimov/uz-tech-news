@@ -92,9 +92,7 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 
 	// User
 
-    Route::get('/profile', function()
-    { return view('users.profile'); })
-        ->name('profile')
+    Route::get('/profile', 'PageController@profile')->name('profile')
         ->middleware('auth');
 
 	Route::resource('users', 'UserController', ['except' => ['create']])
