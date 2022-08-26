@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PostStoreService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Post;
-use App\User;
 use App\Tag;
 use App\Category;
 use Session;
 use Image;
 use File;
-
-use HTMLPurifier;
 
 class PostController extends Controller
 {
@@ -57,7 +54,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PostStoreService $postStoreService)
     {
         // validation
 
@@ -69,42 +66,8 @@ class PostController extends Controller
             'image' => 'sometimes|image'
         ));
 
-        // clean up $request->body from scripts
-
-        $purifier = new HTMLPurifier();
-        $clean_body = $purifier->purify($request->body);
-
         $post = new Post;
-
-        // file uploaded
-
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/post_images/' . $filename);
-
-            Image::make($image)->save($location);
-
-            // 840x341 post, 351x176 minipost, 51x51 postlist
-
-            $post->image = $filename;
-        }
-
-        // store in DB
-
-        $post->title = $request->title;
-        $post->subtitle = $request->subtitle;
-        $post->category_id = $request->category_id;
-        $post->body = $request->body;
-
-        // Setting up relations
-
-        $user = Auth::user();
-        $user->post()->save($post);
-
-        if(isset($request->tags)){
-            $post->tags()->sync($request->tags, false);
-        }
+        $post = $postStoreService($post, $request);
 
         //notificaation
 
@@ -162,49 +125,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, PostStoreService $postStoreService)
     {
         $this->validate($request, array(
             'title' => 'required|max:100',
             'subtitle' => 'required|max:100',
             'category_id' => 'required',
-            'title' => 'required|max:100',
             'body' => 'required',
             'image' => 'sometimes|image'
         ));
 
         $post = Post::find($id);
 
-        if($request->hasFile('image')){
-
-            // create a file
-
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/post_images/' . $filename);
-
-            Image::make($image)->save($location);
-
-            // delete old file
-
-            File::delete(public_path('images/post_images/'. $post->image));
-
-            // 840x341 post, 351x176 minipost, 51x51 postlist
-
-            // save in db
-
-            $post->image = $filename;
-        }
-
-        $post->title = $request->title;
-        $post->subtitle = $request->subtitle;
-        $post->category_id = $request->category_id;
-        $post->body = $request->body;
-        $post->update();
-
-        if(isset($request->tags)){
-            $post->tags()->sync($request->tags, false);
-        }
+        $post = $postStoreService($post, $request);
 
         Session::flash('success', 'Post is successfully updated!');
 
