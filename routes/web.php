@@ -64,7 +64,15 @@ Route::group(['middleware'=>['web', 'locale']], function(){
 		->name('hidePost')
 		->middleware('admin');
 
-	Route::resource('posts', 'PostController');
+    Route::group(['namespace' => 'Post'], function() {
+        Route::get('posts', 'IndexController')->name('posts.index');
+        Route::get('posts/{post_id}', 'ShowController')->name('posts.show');
+        Route::get('posts/create', 'CreateController')->name('posts.create');
+        Route::post('posts', 'StoreController')->name('posts.store');
+        Route::get('posts/{post_id}', 'EditController')->name('posts.edit');
+        Route::patch('posts/{post_id}', 'UpdateController')->name('posts.update');
+        Route::delete('posts/{post_id}', 'DestroyController')->name('posts.destroy');
+    });
 
 	// Resources
 
