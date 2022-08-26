@@ -16,7 +16,7 @@ class PageController extends Controller
 {
 	public function index(){
         // all not hidden posts
-		$posts = Post::where('hidden', 'false')->orderBy('id', 'desc')->simplepaginate(3);
+		$posts = Post::where('hidden', false)->orderBy('id', 'desc')->simplepaginate(3);
 
         $categories = Category::all();
 
